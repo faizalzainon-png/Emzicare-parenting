@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MUGLOVA — Functional Instant Cupcake</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-ring"></div>
+    <span class="preloader-text">MUGLOVA</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">MUGLOVA</div>
+  <div class="nav-links">
+    <a href="#flavours">Flavours</a>
+    <a href="#cta" class="nav-cta">Order Now</a>
+  </div>
+</nav>
+
+<!-- OPENING SCENE — empty mug extreme close-up -->
+<section class="scene" id="scene-01">
+  <canvas id="canvas-01" class="scene-canvas"></canvas>
+  <div class="scene-layers">
+    <div class="layer layer-bg" data-depth="0.02"></div>
+    <div class="layer layer-botanicals" data-depth="0.05" id="botanicals-01"></div>
+    <div class="layer layer-mid" id="mug-layer"></div>
+    <div class="layer layer-particles" id="particles-01"></div>
+    <div class="layer layer-fg" id="fg-elements-01"></div>
+    <div class="vignette-layer"></div>
+    <div class="light-ray-layer"></div>
+  </div>
+  <div class="scene-content" id="opening-text">
+    <p class="eyebrow">From Malaysia, To The World</p>
+    <h1 class="headline-main">This is not<br/><em>just a cupcake.</em></h1>
+    <p class="sub-arabic">موغلوفا — كب كيك وظيفي فوري</p>
+    <div class="scroll-hint">
+      <span>Scroll to discover</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 02 — POWDER POUR -->
+<section class="scene" id="scene-02">
+  <canvas id="canvas-02" class="scene-canvas"></canvas>
+  <div class="scene-layers">
+    <div class="layer layer-bg bg-powder"></div>
+    <div class="layer layer-botanicals" id="botanicals-02" data-depth="0.04"></div>
+    <div class="layer layer-mid" id="mug-powder-layer"></div>
+    <div class="layer layer-particles" id="powder-particles"></div>
+    <div class="light-ray-layer"></div>
+    <div class="vignette-layer"></div>
+  </div>
+  <div class="scene-content scene-content-right">
+    <p class="eyebrow">Step 01</p>
+    <h2 class="scene-headline">Open the sachet.<br/>Pour the magic.</h2>
+    <p class="scene-body">Fine-ground functional powder.<br/>
+    Malaysian botanicals. High-protein blend.<br/>Everything you need in one pour.</p>
+  </div>
+</section>
+
+<!-- SCENE 03 — WATER POUR -->
+<section class="scene" id="scene-03">
+  <canvas id="canvas-03" class="scene-canvas"></canvas>
+  <div class="scene-layers">
+    <div class="layer layer-bg bg-water"></div>
+    <div class="layer layer-botanicals" id="botanicals-03" data-depth="0.03"></div>
+    <div class="layer layer-mid" id="mug-water-layer"></div>
+    <div class="layer layer-steam" id="steam-layer"></div>
+    <div class="light-ray-layer"></div>
+    <div class="vignette-layer"></div>
+  </div>
+  <div class="scene-content scene-content-left">
+    <p class="eyebrow">Step 02</p>
+    <h2 class="scene-headline">Hot water.<br/>Instant alchemy.</h2>
+    <p class="scene-body">90ml. Watch the batter form.<br/>Steam rises. Warmth begins.</p>
+  </div>
+</section>
+
+<!-- SCENE 04 — STIR -->
+<section class="scene" id="scene-04">
+  <canvas id="canvas-04" class="scene-canvas"></canvas>
+  <div class="scene-layers">
+    <div class="layer layer-bg bg-stir"></div>
+    <div class="layer layer-mid" id="mug-stir-layer"></div>
+    <div class="layer layer-particles" id="stir-particles"></div>
+    <div class="vignette-layer"></div>
+  </div>
+  <div class="scene-content scene-content-center">
+    <p class="eyebrow">Step 03</p>
+    <h2 class="scene-headline">Stir until<br/><em>silky smooth.</em></h2>
+  </div>
+</section>
+
+<!-- SCENE 05 — MICROWAVE -->
+<section class="scene" id="scene-05">
+  <canvas id="canvas-05" class="scene-canvas"></canvas>
+  <div class="scene-layers">
+    <div class="layer layer-bg bg-micro"></div>
+    <div class="microwave-frame" id="microwave-frame"></div>
+    <div class="layer layer-mid" id="mug-micro-layer"></div>
+    <div class="micro-glow" id="micro-glow"></div>
+    <div class="micro-glass-overlay"></div>
+    <div class="vignette-layer"></div>
+  </div>
+  <div class="scene-content scene-content-right">
+    <p class="eyebrow">Step 04</p>
+    <h2 class="scene-headline">90 seconds.<br/><em>Pure heat.</em></h2>
+    <p class="scene-body">700–800W. Watch it rise.<br/>The wait is everything.</p>
+  </div>
+</section>
+
+<!-- SCENE 06 — THE RISE -->
+<section class="scene scene-hero" id="scene-06">
+  <canvas id="canvas-06" class="scene-canvas"></canvas>
+  <div class="scene-layers">
+    <div class="layer layer-bg bg-rise"></div>
+    <div class="layer layer-botanicals" id="botanicals-06" data-depth="0.04"></div>
+    <div class="layer layer-mid" id="cupcake-rise-layer"></div>
+    <div class="layer layer-particles" id="rise-particles"></div>
+    <div class="god-rays" id="god-rays"></div>
+    <div class="vignette-layer"></div>
+  </div>
+  <div class="scene-content scene-content-center rise-content">
+    <h2 class="scene-headline-hero">The Rise.</h2>
+    <p class="hero-subtext">Hot. Real texture. Real warmth.</p>
+    <div class="stat-pills">
+      <div class="stat-pill">10g <span>Protein</span></div>
+      <div class="stat-pill">No <span>White Sugar</span></div>
+      <div class="stat-pill">Low <span>Calorie</span></div>
+      <div class="stat-pill">90 <span>Seconds</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 07 — SPOON / FINAL REVEAL -->
+<section class="scene" id="scene-07">
+  <canvas id="canvas-07" class="scene-canvas"></canvas>
+  <div class="scene-layers">
+    <div class="layer layer-bg bg-spoon"></div>
+    <div class="layer layer-mid" id="cupcake-spoon-layer"></div>
+    <div class="layer layer-steam" id="steam-spoon"></div>
+    <div class="light-ray-layer"></div>
+    <div class="vignette-layer"></div>
+  </div>
+  <div class="scene-content scene-content-left">
+    <p class="eyebrow">Ready</p>
+    <h2 class="scene-headline">Molten warmth.<br/><em>Served HOT.</em></h2>
+    <p class="scene-body">Break the surface. See the centre.<br/>Intelligence you can eat.</p>
+  </div>
+</section>
+
+<!-- CALLOUT STRIP -->
+<section id="callouts">
+  <div class="callout-strip">
+    <div class="callout-item" data-delay="0">
+      <span class="callout-icon">⊕</span>
+      <p>"Served HOT. Real warmth. Real texture."</p>
+    </div>
+    <div class="callout-item" data-delay="100">
+      <span class="callout-icon">⊕</span>
+      <p>"10g Protein — high protein, smarter indulgence"</p>
+    </div>
+    <div class="callout-item" data-delay="200">
+      <span class="callout-icon">⊕</span>
+      <p>"No white sugar — no spike, no crash"</p>
+    </div>
+    <div class="callout-item" data-delay="300">
+      <span class="callout-icon">⊕</span>
+      <p>"Low calorie — enjoy without the guilt"</p>
+    </div>
+    <div class="callout-item" data-delay="400">
+      <span class="callout-icon">⊕</span>
+      <p>"Active botanicals — Malaysian functional heritage"</p>
+    </div>
+  </div>
+</section>
+
+<!-- FLAVOUR CHAPTERS -->
+<section id="flavours">
+  <div class="flavour-intro">
+    <p class="eyebrow">Three Flavours. Three Functions.</p>
+    <h2 class="section-headline">Choose your <em>intention.</em></h2>
+  </div>
+
+  <!-- FLAVOUR 01: CHOCOLATE + GARCINIA -->
+  <article class="flavour-card" id="flavour-choc" data-colour="choc">
+    <div class="flavour-visual">
+      <canvas class="flavour-canvas" id="canvas-choc"></canvas>
+      <div class="flavour-botanicals" id="botanicals-choc"></div>
+      <div class="flavour-mug-art choc-art"></div>
+      <div class="flavour-glow choc-glow"></div>
+    </div>
+    <div class="flavour-content">
+      <div class="flavour-tag">Chocolate</div>
+      <div class="botanical-tag">+ Garcinia Cambogia</div>
+      <h3 class="flavour-headline">The one that manages<br/><em>your weight while you indulge.</em></h3>
+      <p class="flavour-body">Garcinia Cambogia — nature's weight management secret from the Malaysian rainforest.</p>
+      <p class="flavour-arabic">مع خلاصة الغارسينيا — لإدارة الوزن بذكاء</p>
+      <div class="flavour-badges">
+        <span class="badge">Weight Management</span>
+        <span class="badge">Appetite Control</span>
+        <span class="badge">Mahogany × Amber</span>
+      </div>
+      <a href="#cta" class="flavour-btn">Order Chocolate</a>
+    </div>
+  </article>
+
+  <!-- FLAVOUR 02: PISTACHIO + BITTER MELON -->
+  <article class="flavour-card" id="flavour-pista" data-colour="pista">
+    <div class="flavour-visual">
+      <canvas class="flavour-canvas" id="canvas-pista"></canvas>
+      <div class="flavour-botanicals" id="botanicals-pista"></div>
+      <div class="flavour-mug-art pista-art"></div>
+      <div class="flavour-glow pista-glow"></div>
+    </div>
+    <div class="flavour-content">
+      <div class="flavour-tag">Pistachio</div>
+      <div class="botanical-tag">+ Bitter Melon</div>
+      <h3 class="flavour-headline">The one that guards<br/><em>your blood sugar.</em></h3>
+      <p class="flavour-body">Bitter Melon extract — functional botanical trusted for generations across Asia.</p>
+      <p class="flavour-arabic">مع خلاصة القرع المر — لتوازن سكر الدم</p>
+      <div class="flavour-badges">
+        <span class="badge">Blood Sugar Balance</span>
+        <span class="badge">Antioxidant</span>
+        <span class="badge">Deep Forest Green</span>
+      </div>
+      <a href="#cta" class="flavour-btn">Order Pistachio</a>
+    </div>
+  </article>
+
+  <!-- FLAVOUR 03: COFFEE + TONGKAT ALI -->
+  <article class="flavour-card" id="flavour-coffee" data-colour="coffee">
+    <div class="flavour-visual">
+      <canvas class="flavour-canvas" id="canvas-coffee"></canvas>
+      <div class="flavour-botanicals" id="botanicals-coffee"></div>
+      <div class="flavour-mug-art coffee-art"></div>
+      <div class="flavour-glow coffee-glow"></div>
+    </div>
+    <div class="flavour-content">
+      <div class="flavour-tag">Coffee</div>
+      <div class="botanical-tag">+ Tongkat Ali</div>
+      <h3 class="flavour-headline">The one that fuels<br/><em>your drive.</em></h3>
+      <p class="flavour-body">Tongkat Ali — Malaysia's legendary botanical for natural vitality and strength.</p>
+      <p class="flavour-arabic">مع خلاصة التونكات علي — للحيوية والقوة الطبيعية</p>
+      <div class="flavour-badges">
+        <span class="badge">Natural Vitality</span>
+        <span class="badge">Strength</span>
+        <span class="badge">Espresso × Copper</span>
+      </div>
+      <a href="#cta" class="flavour-btn">Order Coffee</a>
+    </div>
+  </article>
+</section>
+
+<!-- NUTRITION STRIP -->
+<section id="nutrition">
+  <div class="nutrition-inner">
+    <p class="eyebrow-light">What's inside matters.</p>
+    <h2 class="section-headline light">Crafted for the<br/><em>intelligent indulger.</em></h2>
+    <div class="nutrition-grid">
+      <div class="nut-item">
+        <span class="nut-num">10g</span>
+        <span class="nut-label">Protein</span>
+      </div>
+      <div class="nut-item">
+        <span class="nut-num">0</span>
+        <span class="nut-label">White Sugar</span>
+      </div>
+      <div class="nut-item">
+        <span class="nut-num">90s</span>
+        <span class="nut-label">Ready Time</span>
+      </div>
+      <div class="nut-item">
+        <span class="nut-num">3</span>
+        <span class="nut-label">Botanicals</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-bg"></div>
+  <div class="cta-botanical-silhouettes" id="cta-bots"></div>
+  <div class="cta-inner">
+    <p class="eyebrow-light">Begin Your Journey</p>
+    <h2 class="cta-headline">Indulge Smarter.<br/><em>Live Better.</em></h2>
+    <p class="cta-arabic">استمتع بذكاء. عش أفضل.</p>
+    <div class="cta-buttons">
+      <a href="https://shopee.com.my" target="_blank" rel="noopener" class="btn-primary">Order Now</a>
+      <a href="https://wa.me/601XXXXXXXX" target="_blank" rel="noopener" class="btn-whatsapp">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Order
+      </a>
+    </div>
+    <p class="cta-sub">Free delivery within Malaysia · Ships nationwide</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">MUGLOVA</div>
+    <p class="footer-tagline">Innovation you can eat.</p>
+    <p class="footer-copy">© 2025 MUGLOVA Malaysia. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
