@@ -168,12 +168,34 @@
             "cost_credits": 12,
             "completed_at": "2026-07-16T12:50:00Z",
             "raw_file": "raw/hero-landscape-attempt-2.png (pending local download - see DOWNLOADS.md)"
+          },
+          {
+            "attempt": 3,
+            "draft": false,
+            "kind": "final-4k-high",
+            "status": "awaiting_review",
+            "hf_job_id": "59901516-7bff-467a-8485-7045265253a1",
+            "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260716_193858_59901516-7bff-467a-8485-7045265253a1.png",
+            "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260716_193858_59901516-7bff-467a-8485-7045265253a1_min.webp",
+            "actual_dimensions": {
+              "width": 3840,
+              "height": 2160
+            },
+            "orientation_check": {
+              "checked": true,
+              "passed": true,
+              "ratio": 1.7777777777777777,
+              "reason": null
+            },
+            "cost_credits": 12,
+            "completed_at": "2026-07-16T19:41:19.657553Z",
+            "note": "Final stop-loss attempt (3/3). aspect_ratio corrected to 16:9 to fix the portrait bug from attempt 2 (2480x3312). Genuinely landscape: ratio 1.78."
           }
         ],
         "approved_file": null,
         "actual_dimensions": {
-          "width": 2480,
-          "height": 3312
+          "width": 3840,
+          "height": 2160
         }
       },
       "orientation_requirement": "landscape",

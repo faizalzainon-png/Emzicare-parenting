@@ -1,0 +1,20 @@
+{
+  "asset_id": "hero-landscape",
+  "attempt": 3,
+  "kind": "final-4k-high (stop-loss attempt 3/3)",
+  "requested_at": "2026-07-16T19:24:00Z",
+  "hf_job_id": "59901516-7bff-467a-8485-7045265253a1",
+  "params": {
+    "model": "gpt_image_2",
+    "aspect_ratio": "16:9",
+    "resolution": "4k",
+    "quality": "high",
+    "prompt": "Dashboard — Hero Landscape: Serene Islamic-inspired environment illustration used as the hero backdrop band of the dashboard: soft rolling hills, distant mosque silhouette with dome and minaret, warm sky, gentle clouds.\n\nRecreate ONLY the hero background environment from the approved dashboard: bright blue sky with soft fluffy white clouds, green rolling hills with trees, soft distant mosque domes and minaret silhouettes on the right side, warm golden-hour lighting. Leave gentle open space center-left where the EQ character is composited separately.\n\nPremium painterly children's app environment illustration, soft warm lighting, gentle color grading, Islamic-inspired serene atmosphere where relevant.\n\nFull-bleed scene composition that reaches every edge of the frame; the background is part of the asset and must be kept.\n\nSingle isolated subject only, one asset per image. No text, no letters, no numbers, no labels, no captions, no watermark. No UI elements, no buttons, no cards, no frames, no device mockups. No collage, no grid, no sprite sheet, no multiple variants side by side.\n\nThis asset belongs to the \"Parent Dashboard\" screen; match the visual style, palette and lighting of the attached screen reference, but render ONLY this single subject as an independent asset. Do not reproduce the whole screen."
+  },
+  "reference_medias": [
+    "higgsfield:8d726217-7693-4a58-a5be-f20c6836fccd (dashboard master)"
+  ],
+  "remove_background": false,
+  "cost_preflight_credits": 12,
+  "fix_context": "aspect_ratio corrected from 3:4 (attempt 2 bug) to 16:9 for this stop-loss attempt. Actual output confirmed 3840x2160 (ratio 1.78) - genuinely landscape."
+}
