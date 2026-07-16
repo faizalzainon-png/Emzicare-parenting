@@ -229,14 +229,14 @@
       "reuse_scope": "screen_only",
       "composition_rule": {
         "must_include": [
-          "genuinely wide blue-sky landscape",
+          "genuine wide blue-sky landscape",
           "soft clouds",
-          "green hills and trees",
-          "mosque domes and minaret on the right",
+          "rolling green hills and trees",
+          "distant mosque domes/minaret on the right",
           "safe open area for EQ placement"
         ],
         "must_not_include": [
-          "EQ mascot",
+          "EQ",
           "text",
           "buttons",
           "cards",
@@ -325,17 +325,15 @@
       "reuse_scope": "screen_only",
       "composition_rule": {
         "must_include": [
-          "blue sky",
-          "soft clouds",
+          "sky and soft clouds",
           "floating island",
           "cream-and-teal mosque",
-          "crescent",
+          "crescent moon",
           "green flag with golden heart",
-          "cohesive lighting"
+          "cohesive dashboard lighting"
         ],
         "must_not_include": [
-          "Family Quest title",
-          "descriptive text",
+          "text",
           "CTA button",
           "card border",
           "navigation"
@@ -397,7 +395,7 @@
     },
     {
       "id": "nav-tasks-icon",
-      "name": "Dashboard — Navigation Tasks Icon",
+      "name": "Dashboard — Navigation Tasks/Verify Icon",
       "purpose": "Tasks icon for the bottom navigation bar.",
       "type": "prop",
       "prompt_details": null,
@@ -682,54 +680,6 @@
         "approved_file": null
       },
       "source_provenance": []
-    },
-    {
-      "id": "family-quest-flag-icon",
-      "name": "Dashboard — Family Quest Flag Icon",
-      "purpose": "Small flag-with-heart icon shown on the Family Quest card, separate from the card background artwork.",
-      "type": "prop",
-      "prompt_details": null,
-      "placement": {
-        "section": "Family Quest card",
-        "description": "Single isolated icon placed inside the existing Family Quest card native component; native component handles layout, active/inactive state, and any label."
-      },
-      "layer_order": 11,
-      "anchor": "center",
-      "alignment": "centered within its native slot",
-      "object_fit": "contain",
-      "responsive": "Fixed small icon size; scales with the native component it sits inside.",
-      "native_neighbors": [
-        "Family Quest text and button"
-      ],
-      "recommended_dimensions": {
-        "width": 256,
-        "height": 256
-      },
-      "aspect_ratio": "1:1",
-      "remove_background": true,
-      "references": [],
-      "orientation_requirement": null,
-      "asset_class": "reusable_asset",
-      "reuse_scope": "global",
-      "composition_rule": {
-        "must_include": [
-          "small flag on a pole bearing a golden heart symbol, premium 3D-lite style matching the established premium 3D-lite icon rendering style"
-        ],
-        "must_not_include": [
-          "any other icon or object in frame",
-          "text, letters, numbers or labels",
-          "background scenery",
-          "multiple icon variants side by side",
-          "the surrounding navigation bar, button, or card"
-        ],
-        "native_overlay": "none — used standalone inside a native nav/button/badge component; active/inactive state color handled natively, never baked into the image"
-      },
-      "generation": {
-        "status": "pending",
-        "attempts": [],
-        "approved_file": null
-      },
-      "source_provenance": []
     }
   ],
   "created_at": "2026-07-16T00:00:00.000Z",
@@ -739,5 +689,5 @@
   },
   "production_note": "All three pilot finals rendered 2026-07-16 at 4k/high via gpt_image_2 with dual references (dashboard master + approved 1k draft). Cutouts produced via remove_background. Files pending local download (remote sandbox egress blocks the Higgsfield CDN) - run DOWNLOADS.md on a normal machine. Awaiting Faizal visual approval; nothing auto-approved.",
   "updated_at": "2026-07-16T19:08:44.181Z",
-  "migration_note": "Migrated to the reusable_asset/composite_artwork classification schema on 2026-07-16. Family Quest Floating Island renamed to Family Quest Card Artwork and redefined as a wide card background (was an isolated cutout). 8 reusable global icon assets added, not yet generated."
+  "migration_note": "Second migration pass on 2026-07-16: refined composition_rule wording for Hero Landscape and Family Quest Card Artwork to match reviewed exact phrasing; renamed Navigation Tasks Icon to Navigation Tasks/Verify Icon; removed Family Quest Flag Icon as redundant with the flag+heart already specified inside Family Quest Card Artwork's own must_include. Generation tier and final format (1K/PNG for reusable_asset, 2K/WebP-if-opaque for composite_artwork) are already fully determined by asset_class + remove_background via the approved optimization system — no new manifest fields added for this, per standing instruction."
 }
