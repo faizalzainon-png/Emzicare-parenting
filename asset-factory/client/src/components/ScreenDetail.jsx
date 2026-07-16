@@ -144,6 +144,14 @@ function AssetCard({ a, slug, manifestStatus, call }) {
       </div>
       <p className="muted">{a.purpose}</p>
       <p className="muted">type: {a.type} · aspect {a.aspect_ratio} · {a.remove_background ? 'cutout (remove background)' : 'keeps background'} · layer {a.layer_order} · anchor {a.anchor}</p>
+      {(a.asset_class || a.reuse_scope) && (
+        <p className="muted">class: {a.asset_class || '—'} · reuse: {a.reuse_scope || '—'}</p>
+      )}
+      {a.composition_rule && (
+        <p className="muted">
+          must include: {(a.composition_rule.must_include || []).join('; ') || '—'} · must NOT include: {(a.composition_rule.must_not_include || []).join('; ') || '—'}
+        </p>
+      )}
 
       {manifestStatus !== 'approved' && <p className="warn">Generation locked until the manifest is approved.</p>}
 

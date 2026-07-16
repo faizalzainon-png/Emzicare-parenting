@@ -30,7 +30,10 @@ and files everything.
    Reference + environment style references).
 2. **Decompose** into native UI vs. generated assets in `screen-manifest.json`
    (editable in the UI). Rule: generate only what cannot reasonably be built as
-   native React/Figma UI.
+   native React/Figma UI. Every generated asset must also be classified as
+   `reusable_asset` or `composite_artwork`, with a `reuse_scope` and a
+   `composition_rule` (must include / must not include / native overlay) —
+   see `MANIFEST-SCHEMA.md`. Approval refuses to proceed without this.
 3. **Approve** the manifest (blocked until the master reference and every
    referenced file exist).
 4. **Generate** each asset individually — draft (1k/low) first, final (4k/high)

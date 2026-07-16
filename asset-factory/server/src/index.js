@@ -13,6 +13,7 @@ import {
 import { buildJobParams, LOCKED_MODEL } from './promptBuilder.js'
 import { generateFigmaHandoff } from './figmaHandoff.js'
 import { checkOrientation } from './orientation.js'
+import { validateGeneratedAsset, validateNativeUiEntry } from './assetClass.js'
 
 const PORT = process.env.PORT || 5178
 const MAX_ATTEMPTS = 3 // stop-loss: park the asset after 3 attempts
@@ -55,6 +56,13 @@ app.post('/api/screens', upload.fields([
     status: 'draft', // draft -> awaiting_approval -> approved
     approved_by: null, approved_at: null,
     decomposition_rule: 'Generate only visual assets that cannot reasonably be built as native React/Figma UI.',
+    visual_classification_guide: {
+      note: 'Every visual on this screen belongs to exactly one class. See MANIFEST-SCHEMA.md for the full spec and worked examples.',
+      native_ui: 'Built in React/Figma, never generated (buttons, cards, text, progress rings, nav layout). Add entries to native_ui[] below.',
+      reusable_asset: 'Generated once, reused across many screens (mascot poses, reward chest, floating coin, avatars, decorative objects). Add to generated_assets[] with asset_class: "reusable_asset".',
+      composite_artwork: 'Screen-specific illustration combining multiple elements in one artwork (hero backgrounds, banners, empty-state illustrations). Add to generated_assets[] with asset_class: "composite_artwork".',
+      required_fields_per_generated_asset: ['asset_class', 'reuse_scope (global|screen_only)', 'composition_rule.must_include[]', 'composition_rule.must_not_include[]', 'composition_rule.native_overlay']
+    },
     native_ui: [],
     generated_assets: [],
     created_at: new Date().toISOString()
@@ -116,6 +124,18 @@ app.post('/api/screens/:slug/approve', (req, res) => {
     return bad(res, 409, `Cannot approve: required reference files missing: ${missing.join(', ')}`)
   }
   if (!(m.generated_assets || []).length) return bad(res, 409, 'Cannot approve an empty manifest')
+
+  // Classification gate: every generated asset must declare asset_class,
+  // reuse_scope, and a composition_rule (must_include/must_not_include/
+  // native_overlay) before it can be generated. This is what would have
+  // caught the Hero Landscape ambiguity before it ever reached generation.
+  const classificationErrors = []
+  for (const a of m.generated_assets) classificationErrors.push(...validateGeneratedAsset(a).errors)
+  for (const n of m.native_ui || []) classificationErrors.push(...validateNativeUiEntry(n).errors)
+  if (classificationErrors.length) {
+    return bad(res, 409, `Cannot approve: missing/invalid visual classification —\n${classificationErrors.join('\n')}\nSee MANIFEST-SCHEMA.md for the required asset_class / reuse_scope / composition_rule shape.`)
+  }
+
   m.status = 'approved'
   m.approved_by = req.body?.approved_by || 'Faizal'
   m.approved_at = new Date().toISOString()
