@@ -1,0 +1,148 @@
+{
+  "screen_name": "Parent Dashboard",
+  "slug": "parent-dashboard",
+  "category": "dashboard",
+  "source_reference": "master-reference.png",
+  "status": "awaiting_approval",
+  "approved_by": null,
+  "approved_at": null,
+  "decomposition_rule": "Generate only visual assets that cannot reasonably be built as native React/Figma UI.",
+  "pilot_note": "PILOT SCREEN. Blocked until Faizal (1) uploads the approved Parent Dashboard master design as master-reference.png, (2) uploads eq-master-reference.png and environment style references, (3) reviews and approves this manifest. Nothing generates before that.",
+  "native_ui": [
+    {
+      "name": "Greeting",
+      "notes": "Text component (personalised salutation). Native text, never an image."
+    },
+    {
+      "name": "Headline",
+      "notes": "Text component. Native text, never an image."
+    },
+    {
+      "name": "Progress rings",
+      "notes": "SVG/CSS ring components with animated stroke. Never generated as image."
+    },
+    {
+      "name": "Streak card",
+      "notes": "Card component: background, radius, shadow via CSS; streak number and label are native text."
+    },
+    {
+      "name": "Verify row",
+      "notes": "Native row component with SVG icon and text."
+    },
+    {
+      "name": "Family Quest text and button",
+      "notes": "Native text + button component. The button is never part of any generated image."
+    },
+    {
+      "name": "Bottom navigation",
+      "notes": "Native nav bar with existing SVG icon set."
+    }
+  ],
+  "generated_assets": [
+    {
+      "id": "eq-greeting-companion",
+      "name": "Dashboard — EQ Greeting Companion",
+      "purpose": "EQ character in a calm, friendly greeting pose that sits beside the dashboard greeting text and welcomes the parent.",
+      "type": "eq_character",
+      "prompt_details": "EQ stands facing slightly toward the viewer with one arm raised in a gentle small wave, relaxed posture, soft cheerful expression.",
+      "placement": {
+        "section": "Header / greeting area",
+        "description": "To the right of the greeting and headline text block, bottom-aligned with the header section."
+      },
+      "layer_order": 3,
+      "anchor": "bottom-right",
+      "alignment": "right edge of header content, baseline-aligned with headline",
+      "object_fit": "contain",
+      "responsive": "Scales down to 96px width on small screens; hide below 320px viewport rather than shrinking further.",
+      "native_neighbors": [
+        "Greeting",
+        "Headline"
+      ],
+      "recommended_dimensions": {
+        "width": 480,
+        "height": 640
+      },
+      "aspect_ratio": "3:4",
+      "remove_background": true,
+      "references": [
+        "master-reference.png",
+        "eq-master-reference.png"
+      ],
+      "generation": {
+        "status": "pending",
+        "attempts": [],
+        "approved_file": null
+      }
+    },
+    {
+      "id": "hero-landscape",
+      "name": "Dashboard — Hero Landscape",
+      "purpose": "Serene Islamic-inspired environment illustration used as the hero backdrop band of the dashboard: soft rolling hills, distant mosque silhouette with dome and minaret, warm sky, gentle clouds.",
+      "type": "environment",
+      "prompt_details": "Wide tranquil landscape, dawn light, soft gradient sky, distant elegant mosque silhouette, rolling green hills, a few stylised trees, no people, no animals.",
+      "placement": {
+        "section": "Hero band",
+        "description": "Full-width band directly under the header greeting area, behind no interactive elements; progress rings sit below it, not on top of it."
+      },
+      "layer_order": 1,
+      "anchor": "center",
+      "alignment": "full-bleed horizontally, center-cropped vertically",
+      "object_fit": "cover",
+      "responsive": "Full-bleed at all widths; crop vertically from center; keep the mosque silhouette within the safe middle 60% so it survives cropping.",
+      "native_neighbors": [
+        "Headline",
+        "Progress rings"
+      ],
+      "recommended_dimensions": {
+        "width": 1440,
+        "height": 640
+      },
+      "aspect_ratio": "16:9",
+      "remove_background": false,
+      "references": [
+        "master-reference.png",
+        "environment-style-reference.png"
+      ],
+      "generation": {
+        "status": "pending",
+        "attempts": [],
+        "approved_file": null
+      }
+    },
+    {
+      "id": "family-quest-island",
+      "name": "Dashboard — Family Quest Floating Island",
+      "purpose": "A small floating island illustration for the Family Quest card: a chunk of land floating in air with grass, a tiny tree and subtle floating rocks, evoking a family adventure destination.",
+      "type": "floating_object",
+      "prompt_details": "Compact floating island viewed slightly from below, lush grass top, earthy underside tapering to a point, one small stylised tree, two tiny floating rock fragments nearby, soft magical ambience.",
+      "placement": {
+        "section": "Family Quest card",
+        "description": "Right side of the Family Quest card, vertically centered; quest text and button sit to its left as native components."
+      },
+      "layer_order": 2,
+      "anchor": "center-right",
+      "alignment": "right-aligned inside the card with 16px inset",
+      "object_fit": "contain",
+      "responsive": "Scales with card height; minimum 72px rendered width; never overlaps the native button.",
+      "native_neighbors": [
+        "Family Quest text and button"
+      ],
+      "recommended_dimensions": {
+        "width": 512,
+        "height": 512
+      },
+      "aspect_ratio": "1:1",
+      "remove_background": true,
+      "references": [
+        "master-reference.png",
+        "environment-style-reference.png"
+      ],
+      "generation": {
+        "status": "pending",
+        "attempts": [],
+        "approved_file": null
+      }
+    }
+  ],
+  "created_at": "2026-07-16T00:00:00.000Z"
+}
