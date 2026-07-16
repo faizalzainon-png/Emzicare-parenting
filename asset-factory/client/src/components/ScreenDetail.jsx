@@ -99,7 +99,20 @@ export default function ScreenDetail({ slug, onBack, onError }) {
         )}
         {promoteResult && (
           promoteResult.ok
-            ? <p>✅ Promoted. Package: <code>{promoteResult.zipPath}</code></p>
+            ? <>
+                <p>✅ Promoted. Package: <code>{promoteResult.zipPath}</code></p>
+                <table className="prod-report">
+                  <thead><tr><th>asset</th><th>format</th><th>dimensions</th><th>size</th><th>status</th></tr></thead>
+                  <tbody>
+                    {(promoteResult.results || []).map(r => (
+                      <tr key={r.id}>
+                        <td>{r.id}</td><td>{r.format}</td><td>{r.width}×{r.height}</td><td>{r.sizeKB}KB</td>
+                        <td><span className={`badge status-${r.result === 'PASS' ? 'approved' : 'awaiting_review'}`}>{r.result}</span></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </>
             : <div className="warn">
                 <p>Not promoted:</p>
                 <ul>{(promoteResult.blocking || [promoteResult.error]).map((b, i) => <li key={i}>{b}</li>)}</ul>

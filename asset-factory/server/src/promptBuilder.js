@@ -41,12 +41,19 @@ export function buildPrompt(asset, screen) {
   return parts.join('\n\n')
 }
 
+// Mobile production policy: 4K is never requested for current UI assets.
+// reusable_asset (icons, EQ, avatars — small on-screen footprint, reused
+// everywhere) -> 1K. composite_artwork (hero/card backgrounds, full-bleed
+// but still mobile) -> 2K. 4K is reserved for future marketing assets only,
+// which don't go through this factory today.
+const FINAL_RESOLUTION_BY_CLASS = { reusable_asset: '1k', composite_artwork: '2k' }
+
 export function buildJobParams(asset, screen, { draft = false } = {}) {
   return {
     model: LOCKED_MODEL,
     prompt: buildPrompt(asset, screen),
     aspect_ratio: asset.aspect_ratio || '1:1',
-    resolution: draft ? '1k' : '4k',
+    resolution: draft ? '1k' : (FINAL_RESOLUTION_BY_CLASS[asset.asset_class] || '2k'),
     quality: draft ? 'low' : 'high'
   }
 }

@@ -38,4 +38,6 @@ button:disabled { opacity: .5; cursor: default; }
 figcaption { font-size: 12px; color: #7b8c86; margin-top: 4px; }
 .jobs { list-style: none; padding: 0; } .jobs li { padding: 6px 0; }
 .review-sheet { max-width: 100%; border: 1px solid #e2e8e5; border-radius: 8px; display: block; }
+.prod-report { border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+.prod-report th, .prod-report td { padding: 4px 10px; border-bottom: 1px solid #eef2f0; text-align: left; }
 code { background: #eef2f0; padding: 1px 5px; border-radius: 4px; font-size: 13px; }

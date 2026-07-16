@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 // Run only after every generated asset shows generation.status === 'approved'
 // in the manifest (set by clicking Approve in the factory UI — nothing to
-// edit by hand). Regenerates figma-handoff.md and zips the whole screen
-// package. Refuses to run if anything is unapproved, rejected, or blocked.
+// edit by hand). Optimizes each approved asset for mobile production (resize,
+// compress, PNG for transparency / WebP for opaque), regenerates
+// figma-handoff.md, and zips the whole screen package. Refuses to run if
+// anything is unapproved, rejected, or blocked.
 //
 // CLI usage: node promote.mjs <screen-slug>
 // Also exported as runPromote(slug) for the server's /promote endpoint.
@@ -38,20 +40,52 @@ export async function runPromote(slug) {
     throw err
   }
 
-  console.log(`All assets approved for "${slug}". Promoting...\n`)
+  console.log(`All assets approved for "${slug}". Optimizing for mobile production...\n`)
 
   const { generateFigmaHandoff } = await import(path.join(ASSET_FACTORY_ROOT, 'server/src/figmaHandoff.js'))
+  const { optimizeForProduction } = await import(path.join(ASSET_FACTORY_ROOT, 'server/src/optimize.js'))
 
+  let manifestChanged = false
   const results = []
   for (const asset of manifest.generated_assets) {
-    // approved_file was already set by the UI's Approve action; this just
-    // confirms the file genuinely exists before packaging.
-    const file = asset.generation.approved_file
-    if (!file || !fs.existsSync(path.join(dir, file))) {
-      throw new Error(`${asset.id} is marked approved but its file is missing: ${file}`)
+    const stagedFile = asset.generation.approved_file
+    const stagedPath = path.join(dir, stagedFile || '')
+    if (!stagedFile || !fs.existsSync(stagedPath)) {
+      throw new Error(`${asset.id} is marked approved but its file is missing: ${stagedFile}`)
     }
-    results.push({ id: asset.id, file: path.join(dir, file), dimensions: asset.generation.actual_dimensions })
-    console.log(`  confirmed: ${asset.id} -> ${file}  (${asset.generation.actual_dimensions?.width}x${asset.generation.actual_dimensions?.height})`)
+
+    const destNoExt = path.join(dir, 'assets', asset.id)
+    const report = await optimizeForProduction(stagedPath, destNoExt, {
+      transparent: !!asset.remove_background,
+      assetClass: asset.asset_class
+    })
+
+    // If the format changed (png -> webp for opaque assets), drop the old
+    // staging file so exactly one canonical production file remains, and
+    // correct the existing approved_file pointer to match (value update
+    // only — no new manifest field).
+    const newRelFile = `assets/${report.filename}`
+    if (newRelFile !== stagedFile) {
+      if (fs.existsSync(stagedPath)) fs.unlinkSync(stagedPath)
+      asset.generation.approved_file = newRelFile
+      manifestChanged = true
+    }
+
+    results.push({
+      id: asset.id,
+      filename: report.filename,
+      format: report.format,
+      width: report.width,
+      height: report.height,
+      sizeKB: report.sizeKB,
+      result: report.result
+    })
+    const flag = report.result === 'PASS' ? '✓ PASS' : '⚠ REVIEW'
+    console.log(`  ${asset.id}: ${report.filename}  ${report.width}x${report.height}  ${report.sizeKB}KB  ${flag}`)
+  }
+
+  if (manifestChanged) {
+    fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2))
   }
 
   generateFigmaHandoff(slug, manifest)
@@ -69,8 +103,15 @@ export async function runPromote(slug) {
   })
   console.log(`Package zipped to: ${zipPath}`)
 
-  console.log('\n=== Final approved files ===')
-  for (const r of results) console.log(`  ${r.id}: ${r.file}  (${r.dimensions?.width}x${r.dimensions?.height})`)
+  console.log('\n=== Production assets ===')
+  console.log('  asset                          format  dimensions      size      status')
+  for (const r of results) {
+    console.log(`  ${r.id.padEnd(30)} ${r.format.padEnd(6)}  ${`${r.width}x${r.height}`.padEnd(14)}  ${`${r.sizeKB}KB`.padEnd(8)}  ${r.result}`)
+  }
+  const needsReview = results.filter(r => r.result === 'REVIEW')
+  if (needsReview.length) {
+    console.log(`\n${needsReview.length} asset(s) above the 50KB budget (warning only, not blocking): ${needsReview.map(r => r.id).join(', ')}`)
+  }
   console.log(`\nParent Dashboard pilot complete. Do not proceed to another screen, Figma, or Base44 until Faizal confirms.`)
 
   return { zipPath, results }
