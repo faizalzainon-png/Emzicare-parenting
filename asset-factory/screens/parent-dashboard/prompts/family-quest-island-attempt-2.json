@@ -1,0 +1,20 @@
+{
+  "asset_id": "family-quest-island",
+  "attempt": 2,
+  "kind": "final",
+  "requested_at": "2026-07-16T12:50:00Z",
+  "hf_job_id": "fc92aa25-3bb9-4319-8a6a-d4b90b0cfeb3",
+  "params": {
+    "model": "gpt_image_2",
+    "aspect_ratio": "1:1",
+    "resolution": "4k",
+    "quality": "high",
+    "prompt": "Using the exact 3D glossy Pixar-style art direction, color palette, and warm lighting shown in the two attached references (the approved EQrel Parent Dashboard and the approved Family Quest island draft), recreate ONLY the floating island from the dashboard's Family Quest card as ONE isolated object at premium fidelity, in the same artistic style as the dashboard: a green grass island floating in air with a rounded earthy underside tapering downward, a miniature cream-and-teal domed mosque with a golden crescent moon on top standing on the grass, a small green flag on a pole planted in the grass bearing a golden heart symbol, and one or two tiny soft white clouds hugging the island's base only. Isolate the island completely alone: no sky backdrop, no scenery behind it, no separate floating clouds away from the island, centered on a flat plain solid light neutral background with generous empty padding on all sides (background will be removed). Single object only. No text, no letters, no labels, no watermark, no UI elements, no collage."
+  },
+  "reference_medias": [
+    "8d726217-7693-4a58-a5be-f20c6836fccd (dashboard master, media_input)",
+    "04bb156e-be47-489c-b675-82f1ec567498 (1k draft, image_job)"
+  ],
+  "remove_background": true,
+  "cost_preflight_credits": 12
+}

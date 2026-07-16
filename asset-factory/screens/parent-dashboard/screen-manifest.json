@@ -3,11 +3,11 @@
   "slug": "parent-dashboard",
   "category": "dashboard",
   "source_reference": "master-reference.png",
-  "status": "awaiting_approval",
-  "approved_by": null,
-  "approved_at": null,
+  "status": "approved",
+  "approved_by": "Faizal (Production Mode chat instruction, 2026-07-16)",
+  "approved_at": "2026-07-16T12:45:00Z",
   "decomposition_rule": "Generate only visual assets that cannot reasonably be built as native React/Figma UI.",
-  "pilot_note": "PILOT SCREEN. Blocked until Faizal (1) uploads the approved Parent Dashboard master design as master-reference.png, (2) uploads eq-master-reference.png and environment style references, (3) reviews and approves this manifest. Nothing generates before that.",
+  "pilot_note": "PRODUCTION MODE. Master reference identified as Higgsfield media 8d726217-7693-4a58-a5be-f20c6836fccd (approved Parent Dashboard design, uploaded by Faizal 2026-07-15 and used as the style reference for all dashboard icon/avatar recreations in the prior session). File download into this package is blocked from the remote sandbox; pull it locally via DOWNLOADS.md.",
   "native_ui": [
     {
       "name": "Greeting",
@@ -44,7 +44,7 @@
       "name": "Dashboard — EQ Greeting Companion",
       "purpose": "EQ character in a calm, friendly greeting pose that sits beside the dashboard greeting text and welcomes the parent.",
       "type": "eq_character",
-      "prompt_details": "EQ stands facing slightly toward the viewer with one arm raised in a gentle small wave, relaxed posture, soft cheerful expression.",
+      "prompt_details": "Recreate ONLY the EQ mascot exactly as it appears in the approved dashboard: same winking expression (left eye closed as the angular chevron, right eye round and open), same triumphant raised fist, same other hand holding the glowing golden lantern, same proportions and colors.",
       "placement": {
         "section": "Header / greeting area",
         "description": "To the right of the greeting and headline text block, bottom-aligned with the header section."
@@ -60,18 +60,54 @@
       ],
       "recommended_dimensions": {
         "width": 480,
-        "height": 640
+        "height": 480
       },
-      "aspect_ratio": "3:4",
+      "aspect_ratio": "1:1",
       "remove_background": true,
       "references": [
-        "master-reference.png",
-        "eq-master-reference.png"
+        "higgsfield:8d726217-7693-4a58-a5be-f20c6836fccd (dashboard master)",
+        "higgsfield-job:7e07081e-ca13-4de7-a339-4063237491d9 (approved 1k draft)"
       ],
       "generation": {
-        "status": "pending",
-        "attempts": [],
-        "approved_file": null
+        "status": "awaiting_review",
+        "attempts": [
+          {
+            "attempt": 1,
+            "draft": true,
+            "status": "approved_composition",
+            "hf_job_id": "7e07081e-ca13-4de7-a339-4063237491d9",
+            "note": "Generated 1k/high in prior session from the dashboard master; serves as the reviewed draft composition.",
+            "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260715_195831_7e07081e-ca13-4de7-a339-4063237491d9.png",
+            "actual_dimensions": {
+              "width": 1024,
+              "height": 1024
+            }
+          },
+          {
+            "attempt": 2,
+            "draft": false,
+            "kind": "final-4k-high",
+            "status": "awaiting_review",
+            "hf_job_id": "61a86b86-67cd-44cc-a6e7-bb3b4b1a3dea",
+            "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260716_124721_61a86b86-67cd-44cc-a6e7-bb3b4b1a3dea.png",
+            "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260716_124721_61a86b86-67cd-44cc-a6e7-bb3b4b1a3dea_min.webp",
+            "actual_dimensions": {
+              "width": 2880,
+              "height": 2880
+            },
+            "cost_credits": 12,
+            "completed_at": "2026-07-16T12:50:00Z",
+            "raw_file": "raw/eq-greeting-companion-attempt-2.png (pending local download - see DOWNLOADS.md)",
+            "rmbg_job_id": "d54be498-cf01-47e0-bc77-2c0bff7696bb",
+            "rmbg_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260716_125039_d54be498-cf01-47e0-bc77-2c0bff7696bb.png",
+            "cutout_file": "raw/eq-greeting-companion-attempt-2-cutout.png (pending local download - see DOWNLOADS.md)"
+          }
+        ],
+        "approved_file": null,
+        "actual_dimensions": {
+          "width": 2880,
+          "height": 2880
+        }
       }
     },
     {
@@ -79,34 +115,67 @@
       "name": "Dashboard — Hero Landscape",
       "purpose": "Serene Islamic-inspired environment illustration used as the hero backdrop band of the dashboard: soft rolling hills, distant mosque silhouette with dome and minaret, warm sky, gentle clouds.",
       "type": "environment",
-      "prompt_details": "Wide tranquil landscape, dawn light, soft gradient sky, distant elegant mosque silhouette, rolling green hills, a few stylised trees, no people, no animals.",
+      "prompt_details": "Recreate ONLY the hero background environment from the approved dashboard: bright blue sky with soft fluffy white clouds, green rolling hills with trees, soft distant mosque domes and minaret silhouettes on the right side, warm golden-hour lighting. Leave gentle open space center-left where the EQ character is composited separately.",
       "placement": {
         "section": "Hero band",
         "description": "Full-width band directly under the header greeting area, behind no interactive elements; progress rings sit below it, not on top of it."
       },
       "layer_order": 1,
       "anchor": "center",
-      "alignment": "full-bleed horizontally, center-cropped vertically",
+      "alignment": "full-bleed horizontally, top-anchored in the hero band",
       "object_fit": "cover",
-      "responsive": "Full-bleed at all widths; crop vertically from center; keep the mosque silhouette within the safe middle 60% so it survives cropping.",
+      "responsive": "Full-bleed at all widths; crop from bottom first; keep mosque silhouettes (right) and open character space (center-left) inside the safe area.",
       "native_neighbors": [
         "Headline",
         "Progress rings"
       ],
       "recommended_dimensions": {
-        "width": 1440,
-        "height": 640
+        "width": 880,
+        "height": 1168
       },
-      "aspect_ratio": "16:9",
+      "aspect_ratio": "3:4",
       "remove_background": false,
       "references": [
-        "master-reference.png",
-        "environment-style-reference.png"
+        "higgsfield:8d726217-7693-4a58-a5be-f20c6836fccd (dashboard master)",
+        "higgsfield-job:7cb7825d-c641-4ffd-b74b-5af22099c079 (approved 1k draft)"
       ],
       "generation": {
-        "status": "pending",
-        "attempts": [],
-        "approved_file": null
+        "status": "awaiting_review",
+        "attempts": [
+          {
+            "attempt": 1,
+            "draft": true,
+            "status": "approved_composition",
+            "hf_job_id": "7cb7825d-c641-4ffd-b74b-5af22099c079",
+            "note": "Generated 1k/high in prior session from the dashboard master; serves as the reviewed draft composition.",
+            "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260715_200802_7cb7825d-c641-4ffd-b74b-5af22099c079.png",
+            "actual_dimensions": {
+              "width": 880,
+              "height": 1168
+            }
+          },
+          {
+            "attempt": 2,
+            "draft": false,
+            "kind": "final-4k-high",
+            "status": "awaiting_review",
+            "hf_job_id": "4e5858d7-c0a4-4655-9386-232fef01f76f",
+            "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260716_124734_4e5858d7-c0a4-4655-9386-232fef01f76f.png",
+            "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260716_124734_4e5858d7-c0a4-4655-9386-232fef01f76f_min.webp",
+            "actual_dimensions": {
+              "width": 2480,
+              "height": 3312
+            },
+            "cost_credits": 12,
+            "completed_at": "2026-07-16T12:50:00Z",
+            "raw_file": "raw/hero-landscape-attempt-2.png (pending local download - see DOWNLOADS.md)"
+          }
+        ],
+        "approved_file": null,
+        "actual_dimensions": {
+          "width": 2480,
+          "height": 3312
+        }
       }
     },
     {
@@ -114,7 +183,7 @@
       "name": "Dashboard — Family Quest Floating Island",
       "purpose": "A small floating island illustration for the Family Quest card: a chunk of land floating in air with grass, a tiny tree and subtle floating rocks, evoking a family adventure destination.",
       "type": "floating_object",
-      "prompt_details": "Compact floating island viewed slightly from below, lush grass top, earthy underside tapering to a point, one small stylised tree, two tiny floating rock fragments nearby, soft magical ambience.",
+      "prompt_details": "Recreate ONLY the floating island from the approved dashboard's Family Quest card as one isolated object: green grass island floating in air with an earthy underside, a miniature cream-and-teal domed mosque with a golden crescent moon on top, a small green flag on a pole planted in the grass bearing a golden heart symbol, one or two tiny soft clouds hugging the island base only.",
       "placement": {
         "section": "Family Quest card",
         "description": "Right side of the Family Quest card, vertically centered; quest text and button sit to its left as native components."
@@ -134,15 +203,56 @@
       "aspect_ratio": "1:1",
       "remove_background": true,
       "references": [
-        "master-reference.png",
-        "environment-style-reference.png"
+        "higgsfield:8d726217-7693-4a58-a5be-f20c6836fccd (dashboard master)",
+        "higgsfield-job:04bb156e-be47-489c-b675-82f1ec567498 (approved 1k draft)"
       ],
       "generation": {
-        "status": "pending",
-        "attempts": [],
-        "approved_file": null
+        "status": "awaiting_review",
+        "attempts": [
+          {
+            "attempt": 1,
+            "draft": true,
+            "status": "approved_composition",
+            "hf_job_id": "04bb156e-be47-489c-b675-82f1ec567498",
+            "note": "Generated 1k/high in prior session from the dashboard master (banner-with-sky version); serves as the reviewed draft composition. Final is the isolated cutout variant per Production Mode spec.",
+            "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260715_200809_04bb156e-be47-489c-b675-82f1ec567498.png",
+            "actual_dimensions": {
+              "width": 1168,
+              "height": 880
+            }
+          },
+          {
+            "attempt": 2,
+            "draft": false,
+            "kind": "final-4k-high",
+            "status": "awaiting_review",
+            "hf_job_id": "fc92aa25-3bb9-4319-8a6a-d4b90b0cfeb3",
+            "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260716_124749_fc92aa25-3bb9-4319-8a6a-d4b90b0cfeb3.png",
+            "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260716_124749_fc92aa25-3bb9-4319-8a6a-d4b90b0cfeb3_min.webp",
+            "actual_dimensions": {
+              "width": 2880,
+              "height": 2880
+            },
+            "cost_credits": 12,
+            "completed_at": "2026-07-16T12:50:00Z",
+            "raw_file": "raw/family-quest-island-attempt-2.png (pending local download - see DOWNLOADS.md)",
+            "rmbg_job_id": "e44a08f8-1df8-43ca-8140-b9a2a1e75af8",
+            "rmbg_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260716_125109_e44a08f8-1df8-43ca-8140-b9a2a1e75af8.png",
+            "cutout_file": "raw/family-quest-island-attempt-2-cutout.png (pending local download - see DOWNLOADS.md)"
+          }
+        ],
+        "approved_file": null,
+        "actual_dimensions": {
+          "width": 2880,
+          "height": 2880
+        }
       }
     }
   ],
-  "created_at": "2026-07-16T00:00:00.000Z"
+  "created_at": "2026-07-16T00:00:00.000Z",
+  "master_reference_higgsfield_media": {
+    "media_id": "8d726217-7693-4a58-a5be-f20c6836fccd",
+    "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/8d726217-7693-4a58-a5be-f20c6836fccd.png"
+  },
+  "production_note": "All three pilot finals rendered 2026-07-16 at 4k/high via gpt_image_2 with dual references (dashboard master + approved 1k draft). Cutouts produced via remove_background. Files pending local download (remote sandbox egress blocks the Higgsfield CDN) - run DOWNLOADS.md on a normal machine. Awaiting Faizal visual approval; nothing auto-approved."
 }
