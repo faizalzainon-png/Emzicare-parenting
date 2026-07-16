@@ -1,0 +1,14 @@
+{
+  "name": "eqrel-asset-factory-scripts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "review-sheet": "node review-sheet.mjs",
+    "promote": "node promote.mjs"
+  },
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "sharp": "^0.33.5"
+  }
+}
