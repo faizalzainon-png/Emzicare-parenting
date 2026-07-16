@@ -1,7 +1,15 @@
 async function j(res) {
-  const body = await res.json().catch(() => ({}))
-  if (!res.ok) throw new Error(body.error || `HTTP ${res.status}`)
-  return body
+  const text = await res.text()
+  let body
+  try { body = text ? JSON.parse(text) : {} } catch { body = null }
+  if (!res.ok) {
+    // Never swallow: if the server didn't return our own {error} JSON shape
+    // (e.g. an uncaught exception rendering an HTML stack trace), surface the
+    // raw response body instead of a bare "HTTP 500" so nothing is lost.
+    const message = body?.error || (text ? `HTTP ${res.status}: ${text.slice(0, 500)}` : `HTTP ${res.status}`)
+    throw new Error(message)
+  }
+  return body ?? {}
 }
 
 export const api = {

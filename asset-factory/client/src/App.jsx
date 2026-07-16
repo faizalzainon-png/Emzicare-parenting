@@ -24,7 +24,15 @@ export default function App() {
         <h1>EQrel Screen-to-Asset Factory</h1>
         <p className="tag">Approved screen concept → individual production illustration assets. Model locked to <code>gpt_image_2</code>. Nothing generates without Faizal's approval.</p>
       </header>
-      {error && <div className="error" onClick={() => setError(null)}>{error}</div>}
+      {error && (
+        <div className="error-overlay" onClick={() => setError(null)}>
+          <div className="error-dialog" onClick={e => e.stopPropagation()}>
+            <h3>⚠ Action failed</h3>
+            <p>{error}</p>
+            <button onClick={() => setError(null)}>Close</button>
+          </div>
+        </div>
+      )}
       {!selected && !creating && (
         <main>
           <div className="row space">

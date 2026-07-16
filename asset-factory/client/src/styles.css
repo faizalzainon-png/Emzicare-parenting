@@ -11,7 +11,11 @@ section { border-top: 1px solid #eef2f0; padding-top: 12px; margin-top: 16px; }
 button, .filebtn, .btnlink { background: #00B894; color: #fff; border: 0; border-radius: 8px; padding: 8px 14px; font-size: 14px; cursor: pointer; text-decoration: none; display: inline-block; }
 button.ghost, .filebtn.ghost { background: #eef2f0; color: #1c2b27; }
 button:disabled { opacity: .5; cursor: default; }
-.error { background: #ffe8ea; border: 1px solid #ff5d6e; color: #8a1f2b; padding: 10px 14px; border-radius: 8px; margin-top: 12px; cursor: pointer; }
+.error-overlay { position: fixed; inset: 0; background: rgba(28,43,39,.55); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+.error-dialog { background: #fff; border: 1px solid #ff5d6e; border-radius: 12px; padding: 20px 24px; max-width: 560px; width: 100%; max-height: 80vh; overflow-y: auto; box-shadow: 0 8px 30px rgba(0,0,0,.25); }
+.error-dialog h3 { margin: 0 0 10px; color: #8a1f2b; }
+.error-dialog p { white-space: pre-wrap; word-break: break-word; color: #1c2b27; }
+.error-dialog button { margin-top: 8px; }
 .warn { color: #a05a00; }
 .muted { color: #7b8c86; font-size: 13px; }
 .badge { font-size: 12px; padding: 2px 10px; border-radius: 999px; background: #eef2f0; text-transform: uppercase; letter-spacing: .04em; }
