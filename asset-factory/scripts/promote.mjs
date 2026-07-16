@@ -1,9 +1,11 @@
 #!/usr/bin/env node
-// Run only after every asset in review-decision.json is "approve". Copies the
-// approved file for each asset into assets/, updates the manifest, regenerates
-// figma-handoff.md, and zips the whole screen package.
+// Run only after every generated asset shows generation.status === 'approved'
+// in the manifest (set by clicking Approve in the factory UI — nothing to
+// edit by hand). Regenerates figma-handoff.md and zips the whole screen
+// package. Refuses to run if anything is unapproved, rejected, or blocked.
 //
-// Usage: node promote.mjs <screen-slug>
+// CLI usage: node promote.mjs <screen-slug>
+// Also exported as runPromote(slug) for the server's /promote endpoint.
 
 import fs from 'fs'
 import path from 'path'
@@ -13,90 +15,70 @@ import { fileURLToPath } from 'url'
 const HERE = path.dirname(fileURLToPath(import.meta.url))
 const ASSET_FACTORY_ROOT = path.resolve(HERE, '..')
 const SCREENS_DIR = path.join(ASSET_FACTORY_ROOT, 'screens')
-const { generateFigmaHandoff } = await import(path.join(ASSET_FACTORY_ROOT, 'server/src/figmaHandoff.js'))
+const MAX_ATTEMPTS = 3 // must match server/src/index.js's stop-loss cap
 
-const slug = process.argv[2]
-if (!slug) { console.error('Usage: node promote.mjs <screen-slug>'); process.exit(1) }
-const dir = path.join(SCREENS_DIR, slug)
-const manifestPath = path.join(dir, 'screen-manifest.json')
-const decisionPath = path.join(dir, 'review-decision.json')
+export async function runPromote(slug) {
+  const dir = path.join(SCREENS_DIR, slug)
+  const manifestPath = path.join(dir, 'screen-manifest.json')
+  if (!fs.existsSync(manifestPath)) throw new Error(`No manifest at ${manifestPath}`)
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
 
-if (!fs.existsSync(manifestPath)) { console.error(`No manifest at ${manifestPath}`); process.exit(1) }
-if (!fs.existsSync(decisionPath)) {
-  console.error(`No ${decisionPath}. Run review-sheet.mjs first and fill in the decision file.`)
-  process.exit(1)
-}
-
-const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
-const decisions = JSON.parse(fs.readFileSync(decisionPath, 'utf8'))
-
-const pending = Object.entries(decisions).filter(([, v]) => v !== 'approve' && v !== 'reject')
-if (pending.length) {
-  console.error(`These assets still have a "pending" decision — inspect the review sheet first: ${pending.map(p => p[0]).join(', ')}`)
-  process.exit(1)
-}
-const rejected = Object.entries(decisions).filter(([, v]) => v === 'reject')
-if (rejected.length) {
-  console.error(`Not promoting — these assets are marked "reject": ${rejected.map(r => r[0]).join(', ')}`)
-  console.error('Per the stop-loss rule: regenerate only the rejected asset(s), preserving the approved composition. Do not reinterpret creatively.')
-  process.exit(1)
-}
-
-console.log(`All assets approved for "${slug}". Promoting...\n`)
-
-const results = []
-for (const asset of manifest.generated_assets) {
-  if (decisions[asset.id] !== 'approve') continue
-  const attempts = asset.generation?.attempts || []
-  const att = [...attempts].reverse().find(a => a.raw_url)
-  if (!att) { console.error(`No completed attempt for ${asset.id}, skipping`); continue }
-
-  const sourceRel = asset.remove_background
-    ? `raw/${asset.id}-attempt-${att.attempt}-cutout.png`
-    : `raw/${asset.id}-attempt-${att.attempt}.png`
-  const sourcePath = path.join(dir, sourceRel)
-  if (!fs.existsSync(sourcePath)) {
-    console.error(`Expected file missing: ${sourcePath}. Run review-sheet.mjs to download it first.`)
-    process.exit(1)
+  const blocking = []
+  for (const asset of manifest.generated_assets) {
+    const status = asset.generation?.status
+    const attempts = asset.generation?.attempts?.length || 0
+    if (status !== 'approved') {
+      const remaining = Math.max(0, MAX_ATTEMPTS - attempts)
+      blocking.push(`${asset.id}: status is "${status || 'pending'}" (${attempts}/${MAX_ATTEMPTS} attempts used, ${remaining} stop-loss attempt${remaining === 1 ? '' : 's'} remaining) — approve or reject it in the factory UI first`)
+    }
   }
-  if (asset.remove_background && sourceRel.endsWith('-cutout.png') === false) {
-    console.error(`${asset.id} requires a background-removed cutout but none exists. Not promoting.`)
-    process.exit(1)
+  if (blocking.length) {
+    const err = new Error(`Not promoting — not every asset is approved yet:\n  ${blocking.join('\n  ')}`)
+    err.blocking = blocking
+    throw err
   }
 
-  const destRel = `assets/${asset.id}.png`
-  fs.copyFileSync(sourcePath, path.join(dir, destRel))
+  console.log(`All assets approved for "${slug}". Promoting...\n`)
 
-  asset.generation.status = 'approved'
-  asset.generation.approved_file = destRel
-  asset.generation.approved_attempt = att.attempt
-  asset.generation.approved_at = new Date().toISOString()
+  const { generateFigmaHandoff } = await import(path.join(ASSET_FACTORY_ROOT, 'server/src/figmaHandoff.js'))
 
-  results.push({ id: asset.id, file: path.join(dir, destRel), dimensions: att.actual_dimensions })
-  console.log(`  approved: ${asset.id} -> ${destRel}  (${att.actual_dimensions?.width}x${att.actual_dimensions?.height})`)
+  const results = []
+  for (const asset of manifest.generated_assets) {
+    // approved_file was already set by the UI's Approve action; this just
+    // confirms the file genuinely exists before packaging.
+    const file = asset.generation.approved_file
+    if (!file || !fs.existsSync(path.join(dir, file))) {
+      throw new Error(`${asset.id} is marked approved but its file is missing: ${file}`)
+    }
+    results.push({ id: asset.id, file: path.join(dir, file), dimensions: asset.generation.actual_dimensions })
+    console.log(`  confirmed: ${asset.id} -> ${file}  (${asset.generation.actual_dimensions?.width}x${asset.generation.actual_dimensions?.height})`)
+  }
+
+  generateFigmaHandoff(slug, manifest)
+  console.log(`\nfigma-handoff.md regenerated.`)
+
+  const zipPath = path.join(ASSET_FACTORY_ROOT, `${slug}-package.zip`)
+  await new Promise((resolve, reject) => {
+    const output = fs.createWriteStream(zipPath)
+    const archive = archiver('zip', { zlib: { level: 9 } })
+    output.on('close', resolve)
+    archive.on('error', reject)
+    archive.pipe(output)
+    archive.directory(dir, slug)
+    archive.finalize()
+  })
+  console.log(`Package zipped to: ${zipPath}`)
+
+  console.log('\n=== Final approved files ===')
+  for (const r of results) console.log(`  ${r.id}: ${r.file}  (${r.dimensions?.width}x${r.dimensions?.height})`)
+  console.log(`\nParent Dashboard pilot complete. Do not proceed to another screen, Figma, or Base44 until Faizal confirms.`)
+
+  return { zipPath, results }
 }
 
-manifest.status = 'approved'
-manifest.visual_approval = { approved_at: new Date().toISOString(), decisions }
-fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2))
-
-generateFigmaHandoff(slug, manifest)
-console.log(`\nfigma-handoff.md regenerated.`)
-
-const zipPath = path.join(ASSET_FACTORY_ROOT, `${slug}-package.zip`)
-await new Promise((resolve, reject) => {
-  const output = fs.createWriteStream(zipPath)
-  const archive = archiver('zip', { zlib: { level: 9 } })
-  output.on('close', resolve)
-  archive.on('error', reject)
-  archive.pipe(output)
-  archive.directory(dir, slug)
-  archive.finalize()
-})
-console.log(`Package zipped to: ${zipPath}`)
-
-console.log('\n=== Final approved files ===')
-for (const r of results) {
-  console.log(`  ${r.id}: ${r.file}  (${r.dimensions?.width}x${r.dimensions?.height})`)
+const isMain = path.resolve(process.argv[1] || '') === path.resolve(fileURLToPath(import.meta.url))
+if (isMain) {
+  const slug = process.argv[2]
+  if (!slug) { console.error('Usage: node promote.mjs <screen-slug>'); process.exit(1) }
+  runPromote(slug).catch(e => { console.error(e.message); process.exit(1) })
 }
-console.log(`\nParent Dashboard pilot complete. Do not proceed to another screen, Figma, or Base44 until Faizal confirms.`)

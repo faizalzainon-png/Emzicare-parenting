@@ -21,5 +21,8 @@ export const api = {
   review: (slug, assetId, decision, attempt, note) => fetch(`/api/screens/${slug}/assets/${assetId}/review`, {
     method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ decision, attempt, note })
   }).then(j),
-  handoff: (slug) => fetch(`/api/screens/${slug}/handoff`, { method: 'POST' }).then(j)
+  handoff: (slug) => fetch(`/api/screens/${slug}/handoff`, { method: 'POST' }).then(j),
+  // Returns the parsed body even on failure (ok:false + blocking[]) so the UI
+  // can show exactly which assets are still unapproved instead of a generic error.
+  promote: (slug) => fetch(`/api/screens/${slug}/promote`, { method: 'POST' }).then(r => r.json())
 }

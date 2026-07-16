@@ -12,6 +12,7 @@ import {
 } from './store.js'
 import { buildJobParams, LOCKED_MODEL } from './promptBuilder.js'
 import { generateFigmaHandoff } from './figmaHandoff.js'
+import { checkOrientation } from './orientation.js'
 
 const PORT = process.env.PORT || 5178
 const MAX_ATTEMPTS = 3 // stop-loss: park the asset after 3 attempts
@@ -280,16 +281,19 @@ app.post('/api/worker/:jobId/complete', async (req, res) => {
 
   const m = readManifest(job.slug)
   const asset = m.generated_assets.find(a => a.id === job.asset_id)
+  const orientationCheck = checkOrientation(asset.orientation_requirement, job.actual_dimensions.width, job.actual_dimensions.height)
+  const attemptStatus = (orientationCheck.checked && !orientationCheck.passed) ? 'blocked_orientation' : 'awaiting_review'
   asset.generation.attempts.push({
     attempt: job.attempt, job_id: job.id, hf_job_id: job.hf_job_id,
-    draft: job.draft, status: 'awaiting_review',
+    draft: job.draft, status: attemptStatus,
     raw_file: `raw/${base}.png`,
     cutout_file: rmbg_url ? `raw/${base}-cutout.png` : null,
     actual_dimensions: job.actual_dimensions,
+    orientation_check: orientationCheck.checked ? orientationCheck : undefined,
     cost_credits: job.cost_credits,
     completed_at: job.completed_at
   })
-  asset.generation.status = 'awaiting_review'
+  asset.generation.status = attemptStatus
   asset.generation.actual_dimensions = job.actual_dimensions
   writeManifest(job.slug, m)
   res.json(job)
@@ -309,6 +313,9 @@ app.post('/api/screens/:slug/assets/:assetId/review', (req, res) => {
 
   const dir = screenDir(req.params.slug)
   if (decision === 'approve') {
+    if (att.status === 'blocked_orientation') {
+      return bad(res, 409, `Cannot approve: orientation check failed for this attempt — ${att.orientation_check?.reason || 'orientation requirement not met'}. Do not rotate or stretch; reject and regenerate instead.`)
+    }
     const src = asset.remove_background ? att.cutout_file : att.raw_file
     if (!src || !fs.existsSync(path.join(dir, src))) {
       return bad(res, 409, asset.remove_background
@@ -338,6 +345,20 @@ app.post('/api/screens/:slug/handoff', (req, res) => {
   const m = readManifest(req.params.slug)
   if (!m) return bad(res, 404, 'not found')
   res.json({ markdown: generateFigmaHandoff(req.params.slug, m) })
+})
+
+// Runs only when every generated asset is already approved (via the review
+// endpoint above); refuses otherwise and reports exactly what's blocking.
+app.post('/api/screens/:slug/promote', async (req, res) => {
+  const m = readManifest(req.params.slug)
+  if (!m) return bad(res, 404, 'not found')
+  try {
+    const { runPromote } = await import('../../scripts/promote.mjs')
+    const result = await runPromote(req.params.slug)
+    res.json({ ok: true, zipPath: result.zipPath, results: result.results })
+  } catch (e) {
+    res.status(409).json({ ok: false, error: e.message, blocking: e.blocking || null })
+  }
 })
 
 app.get('/api/screens/:slug/export', (req, res) => {

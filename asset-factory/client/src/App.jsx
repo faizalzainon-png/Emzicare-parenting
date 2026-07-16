@@ -12,6 +12,12 @@ export default function App() {
   const refresh = () => api.listScreens().then(setScreens).catch(e => setError(e.message))
   useEffect(() => { refresh() }, [])
 
+  // ?screen=<slug> deep-links straight to that screen's review page.
+  useEffect(() => {
+    const slug = new URLSearchParams(window.location.search).get('screen')
+    if (slug) setSelected(slug)
+  }, [])
+
   return (
     <div className="app">
       <header>

@@ -5,6 +5,8 @@ export default function ScreenDetail({ slug, onBack, onError }) {
   const [data, setData] = useState(null)
   const [editing, setEditing] = useState(false)
   const [draftJson, setDraftJson] = useState('')
+  const [promoting, setPromoting] = useState(false)
+  const [promoteResult, setPromoteResult] = useState(null)
 
   const load = useCallback(() => api.getScreen(slug).then(setData).catch(e => onError(e.message)), [slug, onError])
   useEffect(() => { load(); const t = setInterval(load, 8000); return () => clearInterval(t) }, [load])
@@ -12,6 +14,15 @@ export default function ScreenDetail({ slug, onBack, onError }) {
   if (!data) return <main><p>Loading…</p></main>
   const m = data.manifest
   const call = (fn) => fn().then(load).catch(e => onError(e.message))
+
+  const assets = m.generated_assets || []
+  const allApproved = assets.length > 0 && assets.every(a => a.generation?.status === 'approved')
+
+  const runPromote = () => {
+    setPromoting(true)
+    setPromoteResult(null)
+    api.promote(slug).then(result => { setPromoteResult(result); load() }).finally(() => setPromoting(false))
+  }
 
   const uploadMore = (e, isMaster) => {
     const fd = new FormData()
@@ -69,11 +80,31 @@ export default function ScreenDetail({ slug, onBack, onError }) {
       </section>
 
       <section>
+        <h3>Review sheet</h3>
+        <img className="review-sheet" src={`/files/${slug}/previews/review-sheet.png?t=${data.jobs.length}`} alt="review sheet"
+          onError={e => { e.target.style.display = 'none' }} />
+      </section>
+
+      <section>
         <h3>Package</h3>
         <div className="row">
           <button className="ghost" onClick={() => call(() => api.handoff(slug))}>Regenerate figma-handoff.md</button>
           <a className="btnlink" href={`/api/screens/${slug}/export`}>Export screen package (.zip)</a>
+          {allApproved && (
+            <button onClick={runPromote} disabled={promoting}>{promoting ? 'Promoting…' : 'Promote Approved Assets'}</button>
+          )}
         </div>
+        {!allApproved && assets.length > 0 && (
+          <p className="muted">Promote unlocks once all {assets.length} generated assets show "approved" below.</p>
+        )}
+        {promoteResult && (
+          promoteResult.ok
+            ? <p>✅ Promoted. Package: <code>{promoteResult.zipPath}</code></p>
+            : <div className="warn">
+                <p>Not promoted:</p>
+                <ul>{(promoteResult.blocking || [promoteResult.error]).map((b, i) => <li key={i}>{b}</li>)}</ul>
+              </div>
+        )}
       </section>
 
       {data.jobs.length > 0 && (
@@ -95,9 +126,16 @@ export default function ScreenDetail({ slug, onBack, onError }) {
   )
 }
 
+const MAX_ATTEMPTS = 3 // must match server/src/index.js's stop-loss cap
+
 function AssetCard({ a, slug, manifestStatus, call }) {
   const g = a.generation || { status: 'pending', attempts: [] }
-  const latest = g.attempts?.[g.attempts.length - 1]
+  const attemptCount = g.attempts?.length || 0
+  const remaining = Math.max(0, MAX_ATTEMPTS - attemptCount)
+  const inFlight = ['queued', 'claimed', 'submitted'].includes(g.status)
+  const needsRegeneration = ['rejected', 'blocked_orientation', 'failed'].includes(g.status)
+  const neverGenerated = attemptCount === 0
+
   return (
     <div className="asset">
       <div className="row space">
@@ -106,13 +144,26 @@ function AssetCard({ a, slug, manifestStatus, call }) {
       </div>
       <p className="muted">{a.purpose}</p>
       <p className="muted">type: {a.type} · aspect {a.aspect_ratio} · {a.remove_background ? 'cutout (remove background)' : 'keeps background'} · layer {a.layer_order} · anchor {a.anchor}</p>
-      {manifestStatus === 'approved' && g.status !== 'approved' && (
+
+      {manifestStatus !== 'approved' && <p className="warn">Generation locked until the manifest is approved.</p>}
+
+      {manifestStatus === 'approved' && g.status !== 'approved' && !inFlight && (
         <div className="row">
-          <button onClick={() => call(() => api.generate(slug, a.id, { draft: true }))}>Queue draft (1k/low)</button>
-          <button onClick={() => call(() => api.generate(slug, a.id, { draft: false }))}>Queue final (4k/high)</button>
+          {neverGenerated && <button onClick={() => call(() => api.generate(slug, a.id, { draft: true }))}>Queue draft (1k/low)</button>}
+          {neverGenerated && <button onClick={() => call(() => api.generate(slug, a.id, { draft: false }))}>Queue final (4k/high)</button>}
+          {needsRegeneration && remaining > 0 && (
+            <button onClick={() => call(() => api.generate(slug, a.id, { draft: false }))}>Queue Final Regeneration</button>
+          )}
+          {needsRegeneration && remaining === 0 && (
+            <span className="warn">Stop-loss reached ({attemptCount}/{MAX_ATTEMPTS} attempts) — no attempts remain. Needs a human decision before regenerating again.</span>
+          )}
         </div>
       )}
-      {manifestStatus !== 'approved' && <p className="warn">Generation locked until the manifest is approved.</p>}
+      {manifestStatus === 'approved' && g.status !== 'approved' && !neverGenerated && (
+        <p className="muted">{attemptCount}/{MAX_ATTEMPTS} attempts used · {remaining} stop-loss attempt{remaining === 1 ? '' : 's'} remaining</p>
+      )}
+      {inFlight && <p className="muted">Job {g.status} — waiting on the local Higgsfield worker session (see WORKER.md).</p>}
+
       {(g.attempts || []).map(att => (
         <div className="attempt" key={att.attempt}>
           <div className="row space">
@@ -126,6 +177,9 @@ function AssetCard({ a, slug, manifestStatus, call }) {
               </span>
             )}
           </div>
+          {att.status === 'blocked_orientation' && (
+            <p className="warn">⚠ Orientation check failed — approval is disabled for this attempt: {att.orientation_check?.reason}</p>
+          )}
           <div className="ref-row">
             {att.raw_file && <figure><img src={`/files/${slug}/${att.raw_file}`} alt="raw" /><figcaption>raw</figcaption></figure>}
             {att.cutout_file && <figure className="checker"><img src={`/files/${slug}/${att.cutout_file}`} alt="cutout" /><figcaption>cutout (alpha)</figcaption></figure>}
