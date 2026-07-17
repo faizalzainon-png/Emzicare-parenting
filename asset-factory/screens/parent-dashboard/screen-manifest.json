@@ -1,0 +1,853 @@
+{
+  "screen_name": "Parent Dashboard",
+  "slug": "parent-dashboard",
+  "category": "dashboard",
+  "source_reference": "master-reference.png",
+  "status": "approved",
+  "approved_by": "Faizal (chat approval, 2026-07-17: start-fresh production run under finalized mobile-first pipeline)",
+  "approved_at": "2026-07-17T01:20:00.000000Z",
+  "decomposition_rule": "Generate only visual assets that cannot reasonably be built as native React/Figma UI.",
+  "pilot_note": "PRODUCTION MODE. Master reference identified as Higgsfield media 8d726217-7693-4a58-a5be-f20c6836fccd (approved Parent Dashboard design, uploaded by Faizal 2026-07-15 and used as the style reference for all dashboard icon/avatar recreations in the prior session). File download into this package is blocked from the remote sandbox; pull it locally via DOWNLOADS.md.",
+  "native_ui": [
+    {
+      "name": "Greeting",
+      "notes": "Text component (personalised salutation). Native text, never an image."
+    },
+    {
+      "name": "Headline",
+      "notes": "Text component. Native text, never an image."
+    },
+    {
+      "name": "Progress rings",
+      "notes": "SVG/CSS ring components with animated stroke. Never generated as image."
+    },
+    {
+      "name": "Streak card",
+      "notes": "Card component: background, radius, shadow via CSS; streak number and label are native text."
+    },
+    {
+      "name": "Verify row",
+      "notes": "Native row component with SVG icon and text."
+    },
+    {
+      "name": "Family Quest text and button",
+      "notes": "Native text + button component. The button is never part of any generated image."
+    },
+    {
+      "name": "Bottom navigation",
+      "notes": "Native nav bar with existing SVG icon set."
+    }
+  ],
+  "generated_assets": [
+    {
+      "id": "eq-greeting-companion",
+      "name": "Dashboard — EQ Greeting Companion",
+      "purpose": "EQ character in a calm, friendly greeting pose that sits beside the dashboard greeting text and welcomes the parent.",
+      "type": "eq_character",
+      "prompt_details": "Recreate ONLY the EQ mascot exactly as it appears in the approved dashboard: same winking expression (left eye closed as the angular chevron, right eye round and open), same triumphant raised fist, same other hand holding the glowing golden lantern, same proportions and colors.",
+      "placement": {
+        "section": "Header / greeting area",
+        "description": "To the right of the greeting and headline text block, bottom-aligned with the header section."
+      },
+      "layer_order": 3,
+      "anchor": "bottom-right",
+      "alignment": "right edge of header content, baseline-aligned with headline",
+      "object_fit": "contain",
+      "responsive": "Scales down to 96px width on small screens; hide below 320px viewport rather than shrinking further.",
+      "native_neighbors": [
+        "Greeting",
+        "Headline"
+      ],
+      "recommended_dimensions": {
+        "width": 480,
+        "height": 480
+      },
+      "aspect_ratio": "1:1",
+      "remove_background": true,
+      "references": [],
+      "generation": {
+        "status": "approved",
+        "attempts": [
+          {
+            "attempt": 1,
+            "draft": false,
+            "kind": "final-1k-high",
+            "status": "approved",
+            "hf_job_id": "f3263bff-d7f7-4a1d-80a6-70a7448e0d08",
+            "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013058_f3263bff-d7f7-4a1d-80a6-70a7448e0d08.png",
+            "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013058_f3263bff-d7f7-4a1d-80a6-70a7448e0d08_min.webp",
+            "actual_dimensions": {
+              "width": 1024,
+              "height": 1024
+            },
+            "cost_credits": 5,
+            "completed_at": "2026-07-17T01:40:00.000000Z",
+            "raw_file": "raw/eq-greeting-companion-attempt-1.png",
+            "rmbg_job_id": "2082e6ad-5123-45c1-bb2f-a3a5eb2441aa",
+            "rmbg_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013338_2082e6ad-5123-45c1-bb2f-a3a5eb2441aa.png",
+            "cutout_file": "raw/eq-greeting-companion-attempt-1-cutout.png"
+          }
+        ],
+        "approved_file": "assets/eq-greeting-companion.png",
+        "actual_dimensions": {
+          "width": 1024,
+          "height": 1024
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:11.253Z"
+      },
+      "orientation_requirement": null,
+      "source_provenance": [
+        "higgsfield-job:f3263bff-d7f7-4a1d-80a6-70a7448e0d08 (final final-1k-high generation)",
+        "higgsfield-job:2082e6ad-5123-45c1-bb2f-a3a5eb2441aa (background removal)"
+      ],
+      "asset_class": "reusable_asset",
+      "reuse_scope": "global",
+      "composition_rule": {
+        "must_include": [
+          "isolated approved EQ pose",
+          "glowing lantern",
+          "raised fist",
+          "locked EQ Character DNA"
+        ],
+        "must_not_include": [
+          "landscape",
+          "cards",
+          "text",
+          "UI",
+          "extra characters"
+        ],
+        "native_overlay": [
+          "greeting text",
+          "momentum pill",
+          "dashboard card"
+        ]
+      }
+    },
+    {
+      "id": "hero-landscape",
+      "name": "Dashboard — Hero Landscape",
+      "purpose": "Serene Islamic-inspired environment illustration used as the hero backdrop band of the dashboard: soft rolling hills, distant mosque silhouette with dome and minaret, warm sky, gentle clouds.",
+      "type": "environment",
+      "prompt_details": "Recreate ONLY the hero background environment from the approved dashboard: bright blue sky with soft fluffy white clouds, green rolling hills with trees, soft distant mosque domes and minaret silhouettes on the right side, warm golden-hour lighting. Leave gentle open space center-left where the EQ character is composited separately.",
+      "placement": {
+        "section": "Hero band",
+        "description": "Full-width band directly under the header greeting area, behind no interactive elements; progress rings sit below it, not on top of it."
+      },
+      "layer_order": 1,
+      "anchor": "center",
+      "alignment": "full-bleed horizontally, top-anchored in the hero band",
+      "object_fit": "cover",
+      "responsive": "Full-bleed at all widths; crop from bottom first; keep mosque silhouettes (right) and open character space (center-left) inside the safe area.",
+      "native_neighbors": [
+        "Headline",
+        "Progress rings"
+      ],
+      "recommended_dimensions": {
+        "width": 880,
+        "height": 1168
+      },
+      "aspect_ratio": "16:9",
+      "remove_background": false,
+      "references": [],
+      "generation": {
+        "status": "approved",
+        "attempts": [
+          {
+            "attempt": 1,
+            "draft": false,
+            "kind": "final-2k-high",
+            "status": "approved",
+            "hf_job_id": "55d056fb-41bb-4b42-a3e4-0ce25e8e601d",
+            "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013030_55d056fb-41bb-4b42-a3e4-0ce25e8e601d.png",
+            "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013030_55d056fb-41bb-4b42-a3e4-0ce25e8e601d_min.webp",
+            "actual_dimensions": {
+              "width": 2688,
+              "height": 1520
+            },
+            "cost_credits": 7,
+            "completed_at": "2026-07-17T01:40:00.000000Z",
+            "raw_file": "raw/hero-landscape-attempt-1.png",
+            "orientation_check": {
+              "checked": true,
+              "passed": true,
+              "ratio": 1.768421052631579,
+              "reason": null
+            },
+            "cutout_file": null
+          }
+        ],
+        "approved_file": "assets/hero-landscape.webp",
+        "actual_dimensions": {
+          "width": 2688,
+          "height": 1520
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:13.866Z"
+      },
+      "orientation_requirement": "landscape",
+      "source_provenance": [
+        "higgsfield-job:55d056fb-41bb-4b42-a3e4-0ce25e8e601d (final final-2k-high generation)"
+      ],
+      "asset_class": "composite_artwork",
+      "reuse_scope": "screen_only",
+      "composition_rule": {
+        "must_include": [
+          "genuine wide blue-sky landscape",
+          "soft clouds",
+          "rolling green hills and trees",
+          "distant mosque domes/minaret on the right",
+          "safe open area for EQ placement"
+        ],
+        "must_not_include": [
+          "EQ",
+          "text",
+          "buttons",
+          "cards",
+          "navigation"
+        ],
+        "native_overlay": [
+          "greeting",
+          "notification/profile controls",
+          "EQ cutout",
+          "momentum pill"
+        ]
+      }
+    },
+    {
+      "id": "family-quest-island",
+      "name": "Dashboard — Family Quest Card Artwork",
+      "purpose": "Wide card background artwork for the Family Quest card: a floating island scene with cohesive lighting, sized as a full card background rather than an isolated cutout object.",
+      "type": "environment",
+      "prompt_details": "Recreate the Family Quest card background as one cohesive wide scene, not an isolated cutout object: a floating island with a green grass top and earthy underside sits within a full sky backdrop with soft clouds, a miniature cream-and-teal domed mosque with a golden crescent moon on top stands on the island, a small green flag on a pole planted in the grass bears a golden heart symbol, warm cohesive lighting matching the rest of the approved dashboard.",
+      "placement": {
+        "section": "Family Quest card",
+        "description": "Full card background artwork; Family Quest title, descriptive text and CTA button are native components overlaid on top."
+      },
+      "layer_order": 2,
+      "anchor": "center",
+      "alignment": "full-bleed within the card",
+      "object_fit": "cover",
+      "responsive": "Full-bleed within the card at all widths; crop from edges first; keep the island and mosque within the safe center 70%.",
+      "native_neighbors": [
+        "Family Quest text and button"
+      ],
+      "recommended_dimensions": {
+        "width": 1200,
+        "height": 675
+      },
+      "aspect_ratio": "16:9",
+      "remove_background": false,
+      "references": [],
+      "generation": {
+        "status": "approved",
+        "attempts": [
+          {
+            "attempt": 1,
+            "draft": false,
+            "kind": "final-2k-high",
+            "status": "approved",
+            "hf_job_id": "d8babb59-68f4-4106-9a7e-73f784b79ee1",
+            "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013033_d8babb59-68f4-4106-9a7e-73f784b79ee1.png",
+            "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013033_d8babb59-68f4-4106-9a7e-73f784b79ee1_min.webp",
+            "actual_dimensions": {
+              "width": 2688,
+              "height": 1520
+            },
+            "cost_credits": 7,
+            "completed_at": "2026-07-17T01:40:00.000000Z",
+            "raw_file": "raw/family-quest-island-attempt-1.png",
+            "orientation_check": {
+              "checked": true,
+              "passed": true,
+              "ratio": 1.768421052631579,
+              "reason": null
+            },
+            "cutout_file": null
+          }
+        ],
+        "approved_file": "assets/family-quest-island.webp",
+        "actual_dimensions": {
+          "width": 2688,
+          "height": 1520
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:16.460Z"
+      },
+      "orientation_requirement": "landscape",
+      "source_provenance": [
+        "higgsfield-job:d8babb59-68f4-4106-9a7e-73f784b79ee1 (final final-2k-high generation)"
+      ],
+      "asset_class": "composite_artwork",
+      "reuse_scope": "screen_only",
+      "composition_rule": {
+        "must_include": [
+          "sky and soft clouds",
+          "floating island",
+          "cream-and-teal mosque",
+          "crescent moon",
+          "green flag with golden heart",
+          "cohesive dashboard lighting"
+        ],
+        "must_not_include": [
+          "text",
+          "CTA button",
+          "card border",
+          "navigation"
+        ],
+        "native_overlay": [
+          "Family Quest title",
+          "descriptive text",
+          "CTA button"
+        ]
+      }
+    },
+    {
+      "id": "nav-home-icon",
+      "name": "Dashboard — Navigation Home Icon",
+      "purpose": "Home icon for the bottom navigation bar.",
+      "type": "prop",
+      "prompt_details": null,
+      "placement": {
+        "section": "Bottom navigation",
+        "description": "Single isolated icon placed inside the existing Bottom navigation native component; native component handles layout, active/inactive state, and any label."
+      },
+      "layer_order": 4,
+      "anchor": "center",
+      "alignment": "centered within its native slot",
+      "object_fit": "contain",
+      "responsive": "Fixed small icon size; scales with the native component it sits inside.",
+      "native_neighbors": [
+        "Bottom navigation"
+      ],
+      "recommended_dimensions": {
+        "width": 256,
+        "height": 256
+      },
+      "aspect_ratio": "1:1",
+      "remove_background": true,
+      "references": [],
+      "orientation_requirement": null,
+      "asset_class": "reusable_asset",
+      "reuse_scope": "global",
+      "composition_rule": {
+        "must_include": [
+          "simple rounded house/home silhouette icon, premium 3D-lite style matching the established premium 3D-lite icon rendering style"
+        ],
+        "must_not_include": [
+          "any other icon or object in frame",
+          "text, letters, numbers or labels",
+          "background scenery",
+          "multiple icon variants side by side",
+          "the surrounding navigation bar, button, or card"
+        ],
+        "native_overlay": "none — used standalone inside a native nav/button/badge component; active/inactive state color handled natively, never baked into the image"
+      },
+      "generation": {
+        "status": "approved",
+        "attempts": [
+          {
+            "attempt": 1,
+            "draft": false,
+            "kind": "final-1k-high",
+            "status": "approved",
+            "hf_job_id": "403e0765-4952-48a6-a8e6-44804aca05ec",
+            "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013102_403e0765-4952-48a6-a8e6-44804aca05ec.png",
+            "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013102_403e0765-4952-48a6-a8e6-44804aca05ec_min.webp",
+            "actual_dimensions": {
+              "width": 1024,
+              "height": 1024
+            },
+            "cost_credits": 5,
+            "completed_at": "2026-07-17T01:40:00.000000Z",
+            "raw_file": "raw/nav-home-icon-attempt-1.png",
+            "rmbg_job_id": "5f45f6b6-109f-41ea-b95b-7e2242c17bd5",
+            "rmbg_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013414_5f45f6b6-109f-41ea-b95b-7e2242c17bd5.png",
+            "cutout_file": "raw/nav-home-icon-attempt-1-cutout.png"
+          }
+        ],
+        "approved_file": "assets/nav-home-icon.png",
+        "actual_dimensions": {
+          "width": 1024,
+          "height": 1024
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:19.456Z"
+      },
+      "source_provenance": [
+        "higgsfield-job:403e0765-4952-48a6-a8e6-44804aca05ec (final final-1k-high generation)",
+        "higgsfield-job:5f45f6b6-109f-41ea-b95b-7e2242c17bd5 (background removal)"
+      ]
+    },
+    {
+      "id": "nav-tasks-icon",
+      "name": "Dashboard — Navigation Tasks/Verify Icon",
+      "purpose": "Tasks icon for the bottom navigation bar.",
+      "type": "prop",
+      "prompt_details": null,
+      "placement": {
+        "section": "Bottom navigation",
+        "description": "Single isolated icon placed inside the existing Bottom navigation native component; native component handles layout, active/inactive state, and any label."
+      },
+      "layer_order": 5,
+      "anchor": "center",
+      "alignment": "centered within its native slot",
+      "object_fit": "contain",
+      "responsive": "Fixed small icon size; scales with the native component it sits inside.",
+      "native_neighbors": [
+        "Bottom navigation"
+      ],
+      "recommended_dimensions": {
+        "width": 256,
+        "height": 256
+      },
+      "aspect_ratio": "1:1",
+      "remove_background": true,
+      "references": [],
+      "orientation_requirement": null,
+      "asset_class": "reusable_asset",
+      "reuse_scope": "global",
+      "composition_rule": {
+        "must_include": [
+          "simple rounded checklist/tasks silhouette icon, premium 3D-lite style matching the established premium 3D-lite icon rendering style"
+        ],
+        "must_not_include": [
+          "any other icon or object in frame",
+          "text, letters, numbers or labels",
+          "background scenery",
+          "multiple icon variants side by side",
+          "the surrounding navigation bar, button, or card"
+        ],
+        "native_overlay": "none — used standalone inside a native nav/button/badge component; active/inactive state color handled natively, never baked into the image"
+      },
+      "generation": {
+        "status": "approved",
+        "attempts": [
+          {
+            "attempt": 1,
+            "draft": false,
+            "kind": "final-1k-high",
+            "status": "approved",
+            "hf_job_id": "12b65bcb-8a64-4a67-bb9d-58ed514c6b01",
+            "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013107_12b65bcb-8a64-4a67-bb9d-58ed514c6b01.png",
+            "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013107_12b65bcb-8a64-4a67-bb9d-58ed514c6b01_min.webp",
+            "actual_dimensions": {
+              "width": 1024,
+              "height": 1024
+            },
+            "cost_credits": 5,
+            "completed_at": "2026-07-17T01:40:00.000000Z",
+            "raw_file": "raw/nav-tasks-icon-attempt-1.png",
+            "rmbg_job_id": "ab7deced-f8f2-4a60-ab44-bb073885e1c2",
+            "rmbg_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013339_ab7deced-f8f2-4a60-ab44-bb073885e1c2.png",
+            "cutout_file": "raw/nav-tasks-icon-attempt-1-cutout.png"
+          }
+        ],
+        "approved_file": "assets/nav-tasks-icon.png",
+        "actual_dimensions": {
+          "width": 1024,
+          "height": 1024
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:21.973Z"
+      },
+      "source_provenance": [
+        "higgsfield-job:12b65bcb-8a64-4a67-bb9d-58ed514c6b01 (final final-1k-high generation)",
+        "higgsfield-job:ab7deced-f8f2-4a60-ab44-bb073885e1c2 (background removal)"
+      ]
+    },
+    {
+      "id": "nav-report-icon",
+      "name": "Dashboard — Navigation Report Icon",
+      "purpose": "Report icon for the bottom navigation bar.",
+      "type": "prop",
+      "prompt_details": null,
+      "placement": {
+        "section": "Bottom navigation",
+        "description": "Single isolated icon placed inside the existing Bottom navigation native component; native component handles layout, active/inactive state, and any label."
+      },
+      "layer_order": 6,
+      "anchor": "center",
+      "alignment": "centered within its native slot",
+      "object_fit": "contain",
+      "responsive": "Fixed small icon size; scales with the native component it sits inside.",
+      "native_neighbors": [
+        "Bottom navigation"
+      ],
+      "recommended_dimensions": {
+        "width": 256,
+        "height": 256
+      },
+      "aspect_ratio": "1:1",
+      "remove_background": true,
+      "references": [],
+      "orientation_requirement": null,
+      "asset_class": "reusable_asset",
+      "reuse_scope": "global",
+      "composition_rule": {
+        "must_include": [
+          "simple rounded ascending bar-chart silhouette icon, premium 3D-lite style matching the established premium 3D-lite icon rendering style"
+        ],
+        "must_not_include": [
+          "any other icon or object in frame",
+          "text, letters, numbers or labels",
+          "background scenery",
+          "multiple icon variants side by side",
+          "the surrounding navigation bar, button, or card"
+        ],
+        "native_overlay": "none — used standalone inside a native nav/button/badge component; active/inactive state color handled natively, never baked into the image"
+      },
+      "generation": {
+        "status": "approved",
+        "attempts": [
+          {
+            "attempt": 1,
+            "draft": false,
+            "kind": "final-1k-high",
+            "status": "approved",
+            "hf_job_id": "be2f4ec6-14aa-4e41-aeb2-a1bd0e79d984",
+            "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013110_be2f4ec6-14aa-4e41-aeb2-a1bd0e79d984.png",
+            "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013110_be2f4ec6-14aa-4e41-aeb2-a1bd0e79d984_min.webp",
+            "actual_dimensions": {
+              "width": 1024,
+              "height": 1024
+            },
+            "cost_credits": 5,
+            "completed_at": "2026-07-17T01:40:00.000000Z",
+            "raw_file": "raw/nav-report-icon-attempt-1.png",
+            "rmbg_job_id": "c85e4dbb-ae5d-45e3-a087-9778122b5113",
+            "rmbg_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013415_c85e4dbb-ae5d-45e3-a087-9778122b5113.png",
+            "cutout_file": "raw/nav-report-icon-attempt-1-cutout.png"
+          }
+        ],
+        "approved_file": "assets/nav-report-icon.png",
+        "actual_dimensions": {
+          "width": 1024,
+          "height": 1024
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:25.957Z"
+      },
+      "source_provenance": [
+        "higgsfield-job:be2f4ec6-14aa-4e41-aeb2-a1bd0e79d984 (final final-1k-high generation)",
+        "higgsfield-job:c85e4dbb-ae5d-45e3-a087-9778122b5113 (background removal)"
+      ]
+    },
+    {
+      "id": "nav-profile-avatar",
+      "name": "Dashboard — Navigation Profile Avatar",
+      "purpose": "Generic profile/account avatar shown in the header profile control.",
+      "type": "avatar",
+      "prompt_details": null,
+      "placement": {
+        "section": "Header / greeting area",
+        "description": "Single isolated icon placed inside the existing Header / greeting area native component; native component handles layout, active/inactive state, and any label."
+      },
+      "layer_order": 7,
+      "anchor": "center",
+      "alignment": "centered within its native slot",
+      "object_fit": "contain",
+      "responsive": "Fixed small icon size; scales with the native component it sits inside.",
+      "native_neighbors": [
+        "Headline"
+      ],
+      "recommended_dimensions": {
+        "width": 256,
+        "height": 256
+      },
+      "aspect_ratio": "1:1",
+      "remove_background": true,
+      "references": [],
+      "orientation_requirement": null,
+      "asset_class": "reusable_asset",
+      "reuse_scope": "global",
+      "composition_rule": {
+        "must_include": [
+          "friendly generic parent profile avatar portrait, circular-crop-ready, premium 3D-lite style matching the established premium 3D-lite icon rendering style"
+        ],
+        "must_not_include": [
+          "any other icon or object in frame",
+          "text, letters, numbers or labels",
+          "background scenery",
+          "multiple icon variants side by side",
+          "the surrounding navigation bar, button, or card"
+        ],
+        "native_overlay": "none — used standalone inside a native nav/button/badge component; active/inactive state color handled natively, never baked into the image"
+      },
+      "generation": {
+        "status": "approved",
+        "attempts": [
+          {
+            "attempt": 1,
+            "draft": false,
+            "kind": "final-1k-high",
+            "status": "approved",
+            "hf_job_id": "e467571c-8cc6-4224-b2a4-0a9d1d0c0a52",
+            "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013114_e467571c-8cc6-4224-b2a4-0a9d1d0c0a52.png",
+            "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013114_e467571c-8cc6-4224-b2a4-0a9d1d0c0a52_min.webp",
+            "actual_dimensions": {
+              "width": 1024,
+              "height": 1024
+            },
+            "cost_credits": 5,
+            "completed_at": "2026-07-17T01:40:00.000000Z",
+            "raw_file": "raw/nav-profile-avatar-attempt-1.png",
+            "rmbg_job_id": "e9690aee-cb5f-4114-a35e-5b9f15cc9472",
+            "rmbg_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013416_e9690aee-cb5f-4114-a35e-5b9f15cc9472.png",
+            "cutout_file": "raw/nav-profile-avatar-attempt-1-cutout.png"
+          }
+        ],
+        "approved_file": "assets/nav-profile-avatar.png",
+        "actual_dimensions": {
+          "width": 1024,
+          "height": 1024
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:27.790Z"
+      },
+      "source_provenance": [
+        "higgsfield-job:e467571c-8cc6-4224-b2a4-0a9d1d0c0a52 (final final-1k-high generation)",
+        "higgsfield-job:e9690aee-cb5f-4114-a35e-5b9f15cc9472 (background removal)"
+      ]
+    },
+    {
+      "id": "momentum-star-icon",
+      "name": "Dashboard — Momentum Star Icon",
+      "purpose": "Star badge icon shown next to the momentum/streak stat.",
+      "type": "prop",
+      "prompt_details": null,
+      "placement": {
+        "section": "Streak card",
+        "description": "Single isolated icon placed inside the existing Streak card native component; native component handles layout, active/inactive state, and any label."
+      },
+      "layer_order": 8,
+      "anchor": "center",
+      "alignment": "centered within its native slot",
+      "object_fit": "contain",
+      "responsive": "Fixed small icon size; scales with the native component it sits inside.",
+      "native_neighbors": [
+        "Streak card"
+      ],
+      "recommended_dimensions": {
+        "width": 256,
+        "height": 256
+      },
+      "aspect_ratio": "1:1",
+      "remove_background": true,
+      "references": [],
+      "orientation_requirement": null,
+      "asset_class": "reusable_asset",
+      "reuse_scope": "global",
+      "composition_rule": {
+        "must_include": [
+          "rounded-square badge with a golden star centered on it, premium 3D-lite style matching the established premium 3D-lite icon rendering style"
+        ],
+        "must_not_include": [
+          "any other icon or object in frame",
+          "text, letters, numbers or labels",
+          "background scenery",
+          "multiple icon variants side by side",
+          "the surrounding navigation bar, button, or card"
+        ],
+        "native_overlay": "none — used standalone inside a native nav/button/badge component; active/inactive state color handled natively, never baked into the image"
+      },
+      "generation": {
+        "status": "approved",
+        "attempts": [
+          {
+            "attempt": 1,
+            "draft": false,
+            "kind": "final-1k-high",
+            "status": "approved",
+            "hf_job_id": "53c20692-d212-4faf-ae85-ce2b231a1c2c",
+            "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013118_53c20692-d212-4faf-ae85-ce2b231a1c2c.png",
+            "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013118_53c20692-d212-4faf-ae85-ce2b231a1c2c_min.webp",
+            "actual_dimensions": {
+              "width": 1024,
+              "height": 1024
+            },
+            "cost_credits": 5,
+            "completed_at": "2026-07-17T01:40:00.000000Z",
+            "raw_file": "raw/momentum-star-icon-attempt-1.png",
+            "rmbg_job_id": "9ace35a2-97b0-4d9e-87ee-0f16d3ead1d7",
+            "rmbg_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013417_9ace35a2-97b0-4d9e-87ee-0f16d3ead1d7.png",
+            "cutout_file": "raw/momentum-star-icon-attempt-1-cutout.png"
+          }
+        ],
+        "approved_file": "assets/momentum-star-icon.png",
+        "actual_dimensions": {
+          "width": 1024,
+          "height": 1024
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:30.026Z"
+      },
+      "source_provenance": [
+        "higgsfield-job:53c20692-d212-4faf-ae85-ce2b231a1c2c (final final-1k-high generation)",
+        "higgsfield-job:9ace35a2-97b0-4d9e-87ee-0f16d3ead1d7 (background removal)"
+      ]
+    },
+    {
+      "id": "verify-clipboard-icon",
+      "name": "Dashboard — Verify Clipboard Icon",
+      "purpose": "Clipboard-with-checkmark icon shown in the verify row.",
+      "type": "prop",
+      "prompt_details": null,
+      "placement": {
+        "section": "Verify row",
+        "description": "Single isolated icon placed inside the existing Verify row native component; native component handles layout, active/inactive state, and any label."
+      },
+      "layer_order": 9,
+      "anchor": "center",
+      "alignment": "centered within its native slot",
+      "object_fit": "contain",
+      "responsive": "Fixed small icon size; scales with the native component it sits inside.",
+      "native_neighbors": [
+        "Verify row"
+      ],
+      "recommended_dimensions": {
+        "width": 256,
+        "height": 256
+      },
+      "aspect_ratio": "1:1",
+      "remove_background": true,
+      "references": [],
+      "orientation_requirement": null,
+      "asset_class": "reusable_asset",
+      "reuse_scope": "global",
+      "composition_rule": {
+        "must_include": [
+          "rounded clipboard icon with a checkmark, premium 3D-lite style matching the established premium 3D-lite icon rendering style"
+        ],
+        "must_not_include": [
+          "any other icon or object in frame",
+          "text, letters, numbers or labels",
+          "background scenery",
+          "multiple icon variants side by side",
+          "the surrounding navigation bar, button, or card"
+        ],
+        "native_overlay": "none — used standalone inside a native nav/button/badge component; active/inactive state color handled natively, never baked into the image"
+      },
+      "generation": {
+        "status": "approved",
+        "attempts": [
+          {
+            "attempt": 1,
+            "draft": false,
+            "kind": "final-1k-high",
+            "status": "approved",
+            "hf_job_id": "3bdfeed0-b0a7-4dca-80c6-6c3ca5617cbf",
+            "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013248_3bdfeed0-b0a7-4dca-80c6-6c3ca5617cbf.png",
+            "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013248_3bdfeed0-b0a7-4dca-80c6-6c3ca5617cbf_min.webp",
+            "actual_dimensions": {
+              "width": 1024,
+              "height": 1024
+            },
+            "cost_credits": 5,
+            "completed_at": "2026-07-17T01:40:00.000000Z",
+            "raw_file": "raw/verify-clipboard-icon-attempt-1.png",
+            "rmbg_job_id": "1f3ba50c-900d-4f81-85f5-b4035ed1c352",
+            "rmbg_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013519_1f3ba50c-900d-4f81-85f5-b4035ed1c352.png",
+            "cutout_file": "raw/verify-clipboard-icon-attempt-1-cutout.png"
+          }
+        ],
+        "approved_file": "assets/verify-clipboard-icon.png",
+        "actual_dimensions": {
+          "width": 1024,
+          "height": 1024
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:32.928Z"
+      },
+      "source_provenance": [
+        "higgsfield-job:3bdfeed0-b0a7-4dca-80c6-6c3ca5617cbf (final final-1k-high generation)",
+        "higgsfield-job:1f3ba50c-900d-4f81-85f5-b4035ed1c352 (background removal)"
+      ]
+    },
+    {
+      "id": "family-streak-fire-icon",
+      "name": "Dashboard — Family Streak Fire Icon",
+      "purpose": "Flame icon shown next to the family streak count.",
+      "type": "prop",
+      "prompt_details": null,
+      "placement": {
+        "section": "Streak card",
+        "description": "Single isolated icon placed inside the existing Streak card native component; native component handles layout, active/inactive state, and any label."
+      },
+      "layer_order": 10,
+      "anchor": "center",
+      "alignment": "centered within its native slot",
+      "object_fit": "contain",
+      "responsive": "Fixed small icon size; scales with the native component it sits inside.",
+      "native_neighbors": [
+        "Streak card"
+      ],
+      "recommended_dimensions": {
+        "width": 256,
+        "height": 256
+      },
+      "aspect_ratio": "1:1",
+      "remove_background": true,
+      "references": [],
+      "orientation_requirement": null,
+      "asset_class": "reusable_asset",
+      "reuse_scope": "global",
+      "composition_rule": {
+        "must_include": [
+          "soft rounded flame shape, premium 3D-lite style matching the established premium 3D-lite icon rendering style"
+        ],
+        "must_not_include": [
+          "any other icon or object in frame",
+          "text, letters, numbers or labels",
+          "background scenery",
+          "multiple icon variants side by side",
+          "the surrounding navigation bar, button, or card"
+        ],
+        "native_overlay": "none — used standalone inside a native nav/button/badge component; active/inactive state color handled natively, never baked into the image"
+      },
+      "generation": {
+        "status": "approved",
+        "attempts": [
+          {
+            "attempt": 1,
+            "draft": false,
+            "kind": "final-1k-high",
+            "status": "approved",
+            "hf_job_id": "4701ed78-2818-4b35-a18f-c50189b0f7ed",
+            "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013252_4701ed78-2818-4b35-a18f-c50189b0f7ed.png",
+            "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013252_4701ed78-2818-4b35-a18f-c50189b0f7ed_min.webp",
+            "actual_dimensions": {
+              "width": 1024,
+              "height": 1024
+            },
+            "cost_credits": 5,
+            "completed_at": "2026-07-17T01:40:00.000000Z",
+            "raw_file": "raw/family-streak-fire-icon-attempt-1.png",
+            "rmbg_job_id": "7b1de09a-8fe7-4a56-943d-ee2331eec7c6",
+            "rmbg_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013836_7b1de09a-8fe7-4a56-943d-ee2331eec7c6.png",
+            "cutout_file": "raw/family-streak-fire-icon-attempt-1-cutout.png"
+          }
+        ],
+        "approved_file": "assets/family-streak-fire-icon.png",
+        "actual_dimensions": {
+          "width": 1024,
+          "height": 1024
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:34.707Z"
+      },
+      "source_provenance": [
+        "higgsfield-job:4701ed78-2818-4b35-a18f-c50189b0f7ed (final final-1k-high generation)",
+        "higgsfield-job:7b1de09a-8fe7-4a56-943d-ee2331eec7c6 (background removal)"
+      ]
+    }
+  ],
+  "created_at": "2026-07-16T00:00:00.000Z",
+  "master_reference_higgsfield_media": {
+    "media_id": "8d726217-7693-4a58-a5be-f20c6836fccd",
+    "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/8d726217-7693-4a58-a5be-f20c6836fccd.png"
+  },
+  "production_note": "Full production run 2026-07-17: all 10 Parent Dashboard assets generated from scratch under the finalized mobile-first pipeline (reusable_asset at 1k/high, composite_artwork at 2k/high, via gpt_image_2 with the dashboard master as reference). Background removed on all 8 reusable icons/avatars/character. Files pending local download (remote sandbox egress blocks the Higgsfield CDN) - run DOWNLOADS.md / review-sheet on a normally networked machine to pull raw files, verify orientation locally, and review before approval. Nothing auto-approved.",
+  "updated_at": "2026-07-17T11:55:34.707Z",
+  "migration_note": "Fresh start on 2026-07-16: all prior generation attempts and approvals for every asset discarded. This Parent Dashboard package is being rebuilt from scratch as the first official production package under the finalized mobile-first pipeline (1K reusable_asset, 2K composite_artwork, PNG/WebP final output)."
+}

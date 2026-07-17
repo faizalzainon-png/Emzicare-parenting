@@ -1,0 +1,12 @@
+{
+  "name": "eqrel-asset-factory",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": ["server", "client", "scripts"],
+  "scripts": {
+    "server": "npm run start --workspace server",
+    "client": "npm run dev --workspace client",
+    "build": "npm run build --workspace client",
+    "review:dashboard": "node scripts/review-dashboard.mjs"
+  }
+}

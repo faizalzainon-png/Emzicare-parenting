@@ -1,0 +1,20 @@
+{
+  "asset_id": "hero-landscape",
+  "attempt": 2,
+  "kind": "final",
+  "requested_at": "2026-07-16T12:50:00Z",
+  "hf_job_id": "4e5858d7-c0a4-4655-9386-232fef01f76f",
+  "params": {
+    "model": "gpt_image_2",
+    "aspect_ratio": "3:4",
+    "resolution": "4k",
+    "quality": "high",
+    "prompt": "Using the exact 3D glossy Pixar-style art direction, color palette, and warm golden-hour lighting shown in the two attached references (the approved EQrel Parent Dashboard and the approved hero-background draft), recreate ONLY the hero background environment scene at premium fidelity with premium lighting — same composition and atmosphere: bright blue sky with soft fluffy white clouds, green rolling hills with stylised trees, soft distant mosque domes and minaret silhouettes on the right side of the landscape. Do NOT include any mascot or character — leave gentle open space in the center-left where the character is composited separately. Full-bleed scene composition that reaches every edge of the frame; the background is part of the asset and must be kept. Portrait orientation suitable as a mobile app hero banner background. No people, no animals, no characters. No text, no letters, no labels, no watermark, no UI elements, no collage."
+  },
+  "reference_medias": [
+    "8d726217-7693-4a58-a5be-f20c6836fccd (dashboard master, media_input)",
+    "7cb7825d-c641-4ffd-b74b-5af22099c079 (1k draft, image_job)"
+  ],
+  "remove_background": false,
+  "cost_preflight_credits": 12
+}

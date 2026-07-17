@@ -1,0 +1,98 @@
+{
+  "probe_date": "2026-07-16",
+  "connection_method": "Pre-connected Higgsfield MCP server (mcp__higgsfield__*) available directly in this Claude Code session. No separate CLI install was attempted or needed.",
+  "account_balance_before_test": {
+    "credits": 510.75,
+    "subscription_plan_type": "plus"
+  },
+  "model_catalog_query": {
+    "tool": "models_explore",
+    "action": "list",
+    "type": "image",
+    "gpt_image_2_entry": {
+      "id": "gpt_image_2",
+      "name": "GPT Image 2",
+      "provider_name": "OpenAI",
+      "description": "Next-gen GPT Image model with 1k/2k/4k resolution and low/medium/high quality tiers",
+      "parameters": [
+        { "name": "resolution", "required": "optional", "type": "string", "default": "1k", "options": ["1k", "2k", "4k"] },
+        { "name": "quality", "required": "optional", "type": "string", "default": "low", "options": ["low", "medium", "high"] }
+      ],
+      "medias": [ { "name": "medias", "type": "image", "roles": ["image"] } ],
+      "aspect_ratios": ["1:1", "4:3", "3:4", "16:9", "9:16", "3:2", "2:3"],
+      "tags": ["text-rendering", "editing", "typography", "photorealistic", "4k", "high-resolution"]
+    },
+    "other_image_models_found": [
+      "nano_banana_2", "nano_banana_pro", "soul_2", "soul_cinematic", "gpt_image_2",
+      "cinematic_studio_2_5", "marketing_studio_image", "ms_image", "image_auto",
+      "autosprite", "soul_cast", "soul_location", "soul_v2", "z_image", "nano_banana",
+      "nano_banana_2_shots", "nano_banana_2_lite", "seedream_v4_5", "flux_2",
+      "flux_kontext", "kling_omni_image", "openai_hazel", "seedream_v5_lite",
+      "seedream_v5_pro", "grok_image", "recraft_v4_1", "image_background_remover",
+      "outpaint", "topaz_image", "topaz_image_generative", "bytedance_image_upscale"
+    ]
+  },
+  "get_cost_preflight_tests": [
+    {
+      "request": { "model": "gpt_image_2", "prompt": "test", "aspect_ratio": "1:1", "resolution": "4k", "quality": "high", "background": "transparent", "seed": 12345, "get_cost": true },
+      "response": {
+        "cost": { "credits": 12, "credits_exact": 12 },
+        "adjustments": {
+          "params.background": { "requested": "transparent", "used": "omitted", "reason": "GPT Image 2 does not support this parameter" },
+          "params.seed": { "requested": 12345, "used": "omitted", "reason": "GPT Image 2 does not support this parameter" }
+        }
+      }
+    },
+    {
+      "request": { "model": "gpt_image_2", "prompt": "test", "aspect_ratio": "1:1", "resolution": "4k", "quality": "high", "transparent_background": true, "output_format": "png", "get_cost": true },
+      "response": {
+        "cost": { "credits": 12, "credits_exact": 12 },
+        "adjustments": {
+          "params.transparent_background": { "requested": true, "used": "omitted", "reason": "GPT Image 2 does not support this parameter" },
+          "params.output_format": { "requested": "png", "used": "omitted", "reason": "GPT Image 2 does not support this parameter" }
+        }
+      }
+    },
+    {
+      "request": { "model": "gpt_image_2", "prompt": "test", "aspect_ratio": "1:1", "resolution": "4k", "quality": "high", "get_cost": true },
+      "response": { "cost": { "credits": 12, "credits_exact": 12 } },
+      "note": "No adjustments returned - resolution=4k, quality=high, aspect_ratio=1:1 are all natively supported."
+    },
+    {
+      "request": { "model": "gpt_image_2", "prompt": "test", "aspect_ratio": "1:1", "get_cost": true, "medias": ["3 placeholder UUIDs"] },
+      "response_error": "Expected a UUID or https:// URL for image reference, got: 00000000-0000-0000-0000-000000000001.",
+      "note": "Server validated media value format (rejected non-existent placeholder UUIDs) but did not reject the request for having 3 media entries, consistent with schema declaring no 'max' cap for gpt_image_2's medias role (unlike soul_2 which declares max:1). Could not fully confirm multi-reference support empirically because importing a real test image via media_import_url failed - see network_restrictions below."
+    }
+  ],
+  "network_restrictions_encountered": {
+    "media_import_url_wikipedia_test": "400 Fetch failed for https://upload.wikimedia.org/... (image not fetchable from this session)",
+    "direct_curl_and_webfetch_of_higgsfield_cdn": "403 - blocked at the agent proxy egress policy layer for this sandboxed session",
+    "proxy_status_detail": {
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "d8j0ntlcm91z4.cloudfront.net:443"
+    },
+    "implication": "This is a restriction of the current sandboxed Claude Code session's outbound network policy, not a Higgsfield/GPT Image 2 API limitation. A real Node/React backend running outside this sandbox (or with the CDN domain allowlisted) would not hit this restriction."
+  },
+  "test_generation_job": {
+    "tool": "generate_image",
+    "request_params": {
+      "model": "gpt_image_2",
+      "prompt": "An isolated golden lantern, ornate antique brass and gold metal lantern with glowing warm light inside, product photography style, centered, floating on a flat solid plain white background, no shadows on background, no text, no watermark, no UI elements, highly detailed, photorealistic",
+      "aspect_ratio": "1:1",
+      "resolution": "4k",
+      "quality": "high",
+      "count": 1
+    },
+    "job_id": "e3cb2c62-e037-43bb-9f20-b4b9a87d30a2",
+    "underlying_engine_id_reported_by_api": "videotape-alpha",
+    "status_progression": ["pending", "in_progress (observed for ~13 minutes across repeated polls)", "completed"],
+    "actual_output_dimensions": { "width": 2880, "height": 2880, "note": "Nominal '4k' resolution tier did not literally mean 4096px or 3840px for a 1:1 aspect ratio; actual pixel size came back as 2880x2880. Downstream systems should read actual width/height from the job result metadata rather than assuming from the resolution tier label." },
+    "result_urls": {
+      "rawUrl": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260716_101543_e3cb2c62-e037-43bb-9f20-b4b9a87d30a2.png",
+      "minUrl": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260716_101543_e3cb2c62-e037-43bb-9f20-b4b9a87d30a2_min.webp"
+    },
+    "local_save_result": "NOT saved to technical-probe/lantern-test.png - blocked by this session's network egress policy (see network_restrictions_encountered). The asset exists at the rawUrl above and can be fetched by any client with unrestricted network access."
+  },
+  "secrets_exposed": "None. No API keys, tokens, or credentials were requested, displayed, or logged at any point - the Higgsfield MCP server handles auth internally and never surfaces secrets to the calling session."
+}

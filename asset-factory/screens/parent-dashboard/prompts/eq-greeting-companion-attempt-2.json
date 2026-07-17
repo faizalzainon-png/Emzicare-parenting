@@ -1,0 +1,20 @@
+{
+  "asset_id": "eq-greeting-companion",
+  "attempt": 2,
+  "kind": "final",
+  "requested_at": "2026-07-16T12:50:00Z",
+  "hf_job_id": "61a86b86-67cd-44cc-a6e7-bb3b4b1a3dea",
+  "params": {
+    "model": "gpt_image_2",
+    "aspect_ratio": "1:1",
+    "resolution": "4k",
+    "quality": "high",
+    "prompt": "Using the exact 3D glossy toy/Pixar art style, character design, colors, and lighting quality shown in the two attached references (the approved EQrel Parent Dashboard and the approved isolated mascot draft), recreate ONLY the EQ mascot character exactly as it appears there, at premium Pixar-quality fidelity — same winking expression (left eye closed as an angular chevron wink, right eye round and open), same triumphant raised fist, same other hand holding the glowing golden lantern, same proportions, same colors, same emotional feel. EQ character exact specification (must match precisely, never redesign or reinterpret): rounded-square head with softly rounded corners, the top-right Signature Corner noticeably more rounded; small open smile with coral tongue; cream/off-white torso; LEFT arm and leg solid Primary Green #00B894; RIGHT arm and leg solid Golden Yellow #FFB703; coral heart #FF5D6E on the torso; simple rounded limbs with NO fingers, NO clothes, NO shoes; head remains the dominant mass. Isolate the character completely alone: no background scene, no sky, no hills, no mosque, centered on a flat plain solid light neutral background with generous empty padding on all sides (background will be removed). Single character only. No text, no letters, no labels, no watermark, no UI elements, no collage."
+  },
+  "reference_medias": [
+    "8d726217-7693-4a58-a5be-f20c6836fccd (dashboard master, media_input)",
+    "7e07081e-ca13-4de7-a339-4063237491d9 (1k draft, image_job)"
+  ],
+  "remove_background": true,
+  "cost_preflight_credits": 12
+}
