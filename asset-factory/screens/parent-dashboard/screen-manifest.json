@@ -157,8 +157,8 @@
       "id": "family-quest-island",
       "name": "Dashboard — Family Quest Card Artwork",
       "purpose": "Wide card background artwork for the Family Quest card: a floating island scene with cohesive lighting, sized as a full card background rather than an isolated cutout object.",
-      "type": "floating_object",
-      "prompt_details": "Recreate ONLY the floating island from the approved dashboard's Family Quest card as one isolated object: green grass island floating in air with an earthy underside, a miniature cream-and-teal domed mosque with a golden crescent moon on top, a small green flag on a pole planted in the grass bearing a golden heart symbol, one or two tiny soft clouds hugging the island base only.",
+      "type": "environment",
+      "prompt_details": "Recreate the Family Quest card background as one cohesive wide scene, not an isolated cutout object: a floating island with a green grass top and earthy underside sits within a full sky backdrop with soft clouds, a miniature cream-and-teal domed mosque with a golden crescent moon on top stands on the island, a small green flag on a pole planted in the grass bears a golden heart symbol, warm cohesive lighting matching the rest of the approved dashboard.",
       "placement": {
         "section": "Family Quest card",
         "description": "Full card background artwork; Family Quest title, descriptive text and CTA button are native components overlaid on top."
