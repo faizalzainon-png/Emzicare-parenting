@@ -66,13 +66,13 @@
       "remove_background": true,
       "references": [],
       "generation": {
-        "status": "awaiting_review",
+        "status": "approved",
         "attempts": [
           {
             "attempt": 1,
             "draft": false,
             "kind": "final-1k-high",
-            "status": "awaiting_review",
+            "status": "approved",
             "hf_job_id": "f3263bff-d7f7-4a1d-80a6-70a7448e0d08",
             "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013058_f3263bff-d7f7-4a1d-80a6-70a7448e0d08.png",
             "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013058_f3263bff-d7f7-4a1d-80a6-70a7448e0d08_min.webp",
@@ -82,17 +82,19 @@
             },
             "cost_credits": 5,
             "completed_at": "2026-07-17T01:40:00.000000Z",
-            "raw_file": "raw/eq-greeting-companion-attempt-1.png (pending local download - see DOWNLOADS.md)",
+            "raw_file": "raw/eq-greeting-companion-attempt-1.png",
             "rmbg_job_id": "2082e6ad-5123-45c1-bb2f-a3a5eb2441aa",
             "rmbg_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013338_2082e6ad-5123-45c1-bb2f-a3a5eb2441aa.png",
-            "cutout_file": "raw/eq-greeting-companion-attempt-1-cutout.png (pending local download - see DOWNLOADS.md)"
+            "cutout_file": "raw/eq-greeting-companion-attempt-1-cutout.png"
           }
         ],
-        "approved_file": null,
+        "approved_file": "assets/eq-greeting-companion.png",
         "actual_dimensions": {
           "width": 1024,
           "height": 1024
-        }
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:11.253Z"
       },
       "orientation_requirement": null,
       "source_provenance": [
@@ -149,13 +151,13 @@
       "remove_background": false,
       "references": [],
       "generation": {
-        "status": "awaiting_review",
+        "status": "approved",
         "attempts": [
           {
             "attempt": 1,
             "draft": false,
             "kind": "final-2k-high",
-            "status": "awaiting_review",
+            "status": "approved",
             "hf_job_id": "55d056fb-41bb-4b42-a3e4-0ce25e8e601d",
             "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013030_55d056fb-41bb-4b42-a3e4-0ce25e8e601d.png",
             "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013030_55d056fb-41bb-4b42-a3e4-0ce25e8e601d_min.webp",
@@ -165,20 +167,23 @@
             },
             "cost_credits": 7,
             "completed_at": "2026-07-17T01:40:00.000000Z",
-            "raw_file": "raw/hero-landscape-attempt-1.png (pending local download - see DOWNLOADS.md)",
+            "raw_file": "raw/hero-landscape-attempt-1.png",
             "orientation_check": {
               "checked": true,
               "passed": true,
               "ratio": 1.768421052631579,
               "reason": null
-            }
+            },
+            "cutout_file": null
           }
         ],
-        "approved_file": null,
+        "approved_file": "assets/hero-landscape.webp",
         "actual_dimensions": {
           "width": 2688,
           "height": 1520
-        }
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:13.866Z"
       },
       "orientation_requirement": "landscape",
       "source_provenance": [
@@ -235,13 +240,13 @@
       "remove_background": false,
       "references": [],
       "generation": {
-        "status": "awaiting_review",
+        "status": "approved",
         "attempts": [
           {
             "attempt": 1,
             "draft": false,
             "kind": "final-2k-high",
-            "status": "awaiting_review",
+            "status": "approved",
             "hf_job_id": "d8babb59-68f4-4106-9a7e-73f784b79ee1",
             "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013033_d8babb59-68f4-4106-9a7e-73f784b79ee1.png",
             "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013033_d8babb59-68f4-4106-9a7e-73f784b79ee1_min.webp",
@@ -251,20 +256,23 @@
             },
             "cost_credits": 7,
             "completed_at": "2026-07-17T01:40:00.000000Z",
-            "raw_file": "raw/family-quest-island-attempt-1.png (pending local download - see DOWNLOADS.md)",
+            "raw_file": "raw/family-quest-island-attempt-1.png",
             "orientation_check": {
               "checked": true,
               "passed": true,
               "ratio": 1.768421052631579,
               "reason": null
-            }
+            },
+            "cutout_file": null
           }
         ],
-        "approved_file": null,
+        "approved_file": "assets/family-quest-island.webp",
         "actual_dimensions": {
           "width": 2688,
           "height": 1520
-        }
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:16.460Z"
       },
       "orientation_requirement": "landscape",
       "source_provenance": [
@@ -336,13 +344,13 @@
         "native_overlay": "none — used standalone inside a native nav/button/badge component; active/inactive state color handled natively, never baked into the image"
       },
       "generation": {
-        "status": "awaiting_review",
+        "status": "approved",
         "attempts": [
           {
             "attempt": 1,
             "draft": false,
             "kind": "final-1k-high",
-            "status": "awaiting_review",
+            "status": "approved",
             "hf_job_id": "403e0765-4952-48a6-a8e6-44804aca05ec",
             "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013102_403e0765-4952-48a6-a8e6-44804aca05ec.png",
             "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013102_403e0765-4952-48a6-a8e6-44804aca05ec_min.webp",
@@ -352,17 +360,19 @@
             },
             "cost_credits": 5,
             "completed_at": "2026-07-17T01:40:00.000000Z",
-            "raw_file": "raw/nav-home-icon-attempt-1.png (pending local download - see DOWNLOADS.md)",
+            "raw_file": "raw/nav-home-icon-attempt-1.png",
             "rmbg_job_id": "5f45f6b6-109f-41ea-b95b-7e2242c17bd5",
             "rmbg_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013414_5f45f6b6-109f-41ea-b95b-7e2242c17bd5.png",
-            "cutout_file": "raw/nav-home-icon-attempt-1-cutout.png (pending local download - see DOWNLOADS.md)"
+            "cutout_file": "raw/nav-home-icon-attempt-1-cutout.png"
           }
         ],
-        "approved_file": null,
+        "approved_file": "assets/nav-home-icon.png",
         "actual_dimensions": {
           "width": 1024,
           "height": 1024
-        }
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:19.456Z"
       },
       "source_provenance": [
         "higgsfield-job:403e0765-4952-48a6-a8e6-44804aca05ec (final final-1k-high generation)",
@@ -411,13 +421,13 @@
         "native_overlay": "none — used standalone inside a native nav/button/badge component; active/inactive state color handled natively, never baked into the image"
       },
       "generation": {
-        "status": "awaiting_review",
+        "status": "approved",
         "attempts": [
           {
             "attempt": 1,
             "draft": false,
             "kind": "final-1k-high",
-            "status": "awaiting_review",
+            "status": "approved",
             "hf_job_id": "12b65bcb-8a64-4a67-bb9d-58ed514c6b01",
             "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013107_12b65bcb-8a64-4a67-bb9d-58ed514c6b01.png",
             "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013107_12b65bcb-8a64-4a67-bb9d-58ed514c6b01_min.webp",
@@ -427,17 +437,19 @@
             },
             "cost_credits": 5,
             "completed_at": "2026-07-17T01:40:00.000000Z",
-            "raw_file": "raw/nav-tasks-icon-attempt-1.png (pending local download - see DOWNLOADS.md)",
+            "raw_file": "raw/nav-tasks-icon-attempt-1.png",
             "rmbg_job_id": "ab7deced-f8f2-4a60-ab44-bb073885e1c2",
             "rmbg_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013339_ab7deced-f8f2-4a60-ab44-bb073885e1c2.png",
-            "cutout_file": "raw/nav-tasks-icon-attempt-1-cutout.png (pending local download - see DOWNLOADS.md)"
+            "cutout_file": "raw/nav-tasks-icon-attempt-1-cutout.png"
           }
         ],
-        "approved_file": null,
+        "approved_file": "assets/nav-tasks-icon.png",
         "actual_dimensions": {
           "width": 1024,
           "height": 1024
-        }
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:21.973Z"
       },
       "source_provenance": [
         "higgsfield-job:12b65bcb-8a64-4a67-bb9d-58ed514c6b01 (final final-1k-high generation)",
@@ -486,13 +498,13 @@
         "native_overlay": "none — used standalone inside a native nav/button/badge component; active/inactive state color handled natively, never baked into the image"
       },
       "generation": {
-        "status": "awaiting_review",
+        "status": "approved",
         "attempts": [
           {
             "attempt": 1,
             "draft": false,
             "kind": "final-1k-high",
-            "status": "awaiting_review",
+            "status": "approved",
             "hf_job_id": "be2f4ec6-14aa-4e41-aeb2-a1bd0e79d984",
             "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013110_be2f4ec6-14aa-4e41-aeb2-a1bd0e79d984.png",
             "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013110_be2f4ec6-14aa-4e41-aeb2-a1bd0e79d984_min.webp",
@@ -502,17 +514,19 @@
             },
             "cost_credits": 5,
             "completed_at": "2026-07-17T01:40:00.000000Z",
-            "raw_file": "raw/nav-report-icon-attempt-1.png (pending local download - see DOWNLOADS.md)",
+            "raw_file": "raw/nav-report-icon-attempt-1.png",
             "rmbg_job_id": "c85e4dbb-ae5d-45e3-a087-9778122b5113",
             "rmbg_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013415_c85e4dbb-ae5d-45e3-a087-9778122b5113.png",
-            "cutout_file": "raw/nav-report-icon-attempt-1-cutout.png (pending local download - see DOWNLOADS.md)"
+            "cutout_file": "raw/nav-report-icon-attempt-1-cutout.png"
           }
         ],
-        "approved_file": null,
+        "approved_file": "assets/nav-report-icon.png",
         "actual_dimensions": {
           "width": 1024,
           "height": 1024
-        }
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:25.957Z"
       },
       "source_provenance": [
         "higgsfield-job:be2f4ec6-14aa-4e41-aeb2-a1bd0e79d984 (final final-1k-high generation)",
@@ -561,13 +575,13 @@
         "native_overlay": "none — used standalone inside a native nav/button/badge component; active/inactive state color handled natively, never baked into the image"
       },
       "generation": {
-        "status": "awaiting_review",
+        "status": "approved",
         "attempts": [
           {
             "attempt": 1,
             "draft": false,
             "kind": "final-1k-high",
-            "status": "awaiting_review",
+            "status": "approved",
             "hf_job_id": "e467571c-8cc6-4224-b2a4-0a9d1d0c0a52",
             "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013114_e467571c-8cc6-4224-b2a4-0a9d1d0c0a52.png",
             "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013114_e467571c-8cc6-4224-b2a4-0a9d1d0c0a52_min.webp",
@@ -577,17 +591,19 @@
             },
             "cost_credits": 5,
             "completed_at": "2026-07-17T01:40:00.000000Z",
-            "raw_file": "raw/nav-profile-avatar-attempt-1.png (pending local download - see DOWNLOADS.md)",
+            "raw_file": "raw/nav-profile-avatar-attempt-1.png",
             "rmbg_job_id": "e9690aee-cb5f-4114-a35e-5b9f15cc9472",
             "rmbg_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013416_e9690aee-cb5f-4114-a35e-5b9f15cc9472.png",
-            "cutout_file": "raw/nav-profile-avatar-attempt-1-cutout.png (pending local download - see DOWNLOADS.md)"
+            "cutout_file": "raw/nav-profile-avatar-attempt-1-cutout.png"
           }
         ],
-        "approved_file": null,
+        "approved_file": "assets/nav-profile-avatar.png",
         "actual_dimensions": {
           "width": 1024,
           "height": 1024
-        }
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:27.790Z"
       },
       "source_provenance": [
         "higgsfield-job:e467571c-8cc6-4224-b2a4-0a9d1d0c0a52 (final final-1k-high generation)",
@@ -636,13 +652,13 @@
         "native_overlay": "none — used standalone inside a native nav/button/badge component; active/inactive state color handled natively, never baked into the image"
       },
       "generation": {
-        "status": "awaiting_review",
+        "status": "approved",
         "attempts": [
           {
             "attempt": 1,
             "draft": false,
             "kind": "final-1k-high",
-            "status": "awaiting_review",
+            "status": "approved",
             "hf_job_id": "53c20692-d212-4faf-ae85-ce2b231a1c2c",
             "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013118_53c20692-d212-4faf-ae85-ce2b231a1c2c.png",
             "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013118_53c20692-d212-4faf-ae85-ce2b231a1c2c_min.webp",
@@ -652,17 +668,19 @@
             },
             "cost_credits": 5,
             "completed_at": "2026-07-17T01:40:00.000000Z",
-            "raw_file": "raw/momentum-star-icon-attempt-1.png (pending local download - see DOWNLOADS.md)",
+            "raw_file": "raw/momentum-star-icon-attempt-1.png",
             "rmbg_job_id": "9ace35a2-97b0-4d9e-87ee-0f16d3ead1d7",
             "rmbg_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013417_9ace35a2-97b0-4d9e-87ee-0f16d3ead1d7.png",
-            "cutout_file": "raw/momentum-star-icon-attempt-1-cutout.png (pending local download - see DOWNLOADS.md)"
+            "cutout_file": "raw/momentum-star-icon-attempt-1-cutout.png"
           }
         ],
-        "approved_file": null,
+        "approved_file": "assets/momentum-star-icon.png",
         "actual_dimensions": {
           "width": 1024,
           "height": 1024
-        }
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:30.026Z"
       },
       "source_provenance": [
         "higgsfield-job:53c20692-d212-4faf-ae85-ce2b231a1c2c (final final-1k-high generation)",
@@ -711,13 +729,13 @@
         "native_overlay": "none — used standalone inside a native nav/button/badge component; active/inactive state color handled natively, never baked into the image"
       },
       "generation": {
-        "status": "awaiting_review",
+        "status": "approved",
         "attempts": [
           {
             "attempt": 1,
             "draft": false,
             "kind": "final-1k-high",
-            "status": "awaiting_review",
+            "status": "approved",
             "hf_job_id": "3bdfeed0-b0a7-4dca-80c6-6c3ca5617cbf",
             "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013248_3bdfeed0-b0a7-4dca-80c6-6c3ca5617cbf.png",
             "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013248_3bdfeed0-b0a7-4dca-80c6-6c3ca5617cbf_min.webp",
@@ -727,17 +745,19 @@
             },
             "cost_credits": 5,
             "completed_at": "2026-07-17T01:40:00.000000Z",
-            "raw_file": "raw/verify-clipboard-icon-attempt-1.png (pending local download - see DOWNLOADS.md)",
+            "raw_file": "raw/verify-clipboard-icon-attempt-1.png",
             "rmbg_job_id": "1f3ba50c-900d-4f81-85f5-b4035ed1c352",
             "rmbg_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013519_1f3ba50c-900d-4f81-85f5-b4035ed1c352.png",
-            "cutout_file": "raw/verify-clipboard-icon-attempt-1-cutout.png (pending local download - see DOWNLOADS.md)"
+            "cutout_file": "raw/verify-clipboard-icon-attempt-1-cutout.png"
           }
         ],
-        "approved_file": null,
+        "approved_file": "assets/verify-clipboard-icon.png",
         "actual_dimensions": {
           "width": 1024,
           "height": 1024
-        }
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:32.928Z"
       },
       "source_provenance": [
         "higgsfield-job:3bdfeed0-b0a7-4dca-80c6-6c3ca5617cbf (final final-1k-high generation)",
@@ -786,13 +806,13 @@
         "native_overlay": "none — used standalone inside a native nav/button/badge component; active/inactive state color handled natively, never baked into the image"
       },
       "generation": {
-        "status": "awaiting_review",
+        "status": "approved",
         "attempts": [
           {
             "attempt": 1,
             "draft": false,
             "kind": "final-1k-high",
-            "status": "awaiting_review",
+            "status": "approved",
             "hf_job_id": "4701ed78-2818-4b35-a18f-c50189b0f7ed",
             "raw_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013252_4701ed78-2818-4b35-a18f-c50189b0f7ed.png",
             "min_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013252_4701ed78-2818-4b35-a18f-c50189b0f7ed_min.webp",
@@ -802,17 +822,19 @@
             },
             "cost_credits": 5,
             "completed_at": "2026-07-17T01:40:00.000000Z",
-            "raw_file": "raw/family-streak-fire-icon-attempt-1.png (pending local download - see DOWNLOADS.md)",
+            "raw_file": "raw/family-streak-fire-icon-attempt-1.png",
             "rmbg_job_id": "7b1de09a-8fe7-4a56-943d-ee2331eec7c6",
             "rmbg_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/hf_20260717_013836_7b1de09a-8fe7-4a56-943d-ee2331eec7c6.png",
-            "cutout_file": "raw/family-streak-fire-icon-attempt-1-cutout.png (pending local download - see DOWNLOADS.md)"
+            "cutout_file": "raw/family-streak-fire-icon-attempt-1-cutout.png"
           }
         ],
-        "approved_file": null,
+        "approved_file": "assets/family-streak-fire-icon.png",
         "actual_dimensions": {
           "width": 1024,
           "height": 1024
-        }
+        },
+        "approved_attempt": 1,
+        "approved_at": "2026-07-17T11:55:34.707Z"
       },
       "source_provenance": [
         "higgsfield-job:4701ed78-2818-4b35-a18f-c50189b0f7ed (final final-1k-high generation)",
@@ -826,6 +848,6 @@
     "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3FASFJ2KvAn9gbeFLa3MeLLQDbB/8d726217-7693-4a58-a5be-f20c6836fccd.png"
   },
   "production_note": "Full production run 2026-07-17: all 10 Parent Dashboard assets generated from scratch under the finalized mobile-first pipeline (reusable_asset at 1k/high, composite_artwork at 2k/high, via gpt_image_2 with the dashboard master as reference). Background removed on all 8 reusable icons/avatars/character. Files pending local download (remote sandbox egress blocks the Higgsfield CDN) - run DOWNLOADS.md / review-sheet on a normally networked machine to pull raw files, verify orientation locally, and review before approval. Nothing auto-approved.",
-  "updated_at": "2026-07-17T01:40:00.000000Z",
+  "updated_at": "2026-07-17T11:55:34.707Z",
   "migration_note": "Fresh start on 2026-07-16: all prior generation attempts and approvals for every asset discarded. This Parent Dashboard package is being rebuilt from scratch as the first official production package under the finalized mobile-first pipeline (1K reusable_asset, 2K composite_artwork, PNG/WebP final output)."
 }
